@@ -1,0 +1,113 @@
+networks:
+  default:
+    external: {name: media-microservices-overlay-2}
+services:
+  cast-info-memcached: {command: -m 8236 -c 625 -R 45 -t 12 -f 2.663212289618745,
+    hostname: cast-info-memcached, image: memcached, restart: always}
+  cast-info-mongodb:
+    command: --wiredTigerCacheSizeGB 11.42374198405853 --serviceExecutor synchronous
+      --wiredTigerCollectionBlockCompressor snappy --setParameter wiredTigerConcurrentReadTransactions=218
+      --setParameter wiredTigerConcurrentWriteTransactions=82
+    hostname: cast-info-mongodb
+    image: mongo
+    restart: always
+    volumes: ['~/uservices/DeathStarBench/mediaMicroservices/tmp/cast-info_mongoconfigdb:/data/configdb',
+      '~/uservices/DeathStarBench/mediaMicroservices/tmp/cast-info_mongodb:/data/db/']
+  compose-review-memcached: {command: -m 12010 -c 674 -R 4 -t 16 -f 1.6148283889766253,
+    hostname: compose-review-memcached, image: memcached, restart: always}
+  movie-id-memcached: {command: -m 15105 -c 1888 -R 69 -t 5 -f 2.451414828748353,
+    hostname: movie-id-memcached, image: memcached, restart: always}
+  movie-id-mongodb:
+    command: --wiredTigerCacheSizeGB 10.552601242002702 --serviceExecutor synchronous
+      --wiredTigerCollectionBlockCompressor snappy --setParameter wiredTigerConcurrentReadTransactions=170
+      --setParameter wiredTigerConcurrentWriteTransactions=71
+    hostname: movie-id-mongodb
+    image: mongo
+    restart: always
+    volumes: ['~/uservices/DeathStarBench/mediaMicroservices/tmp/movie-id_mongoconfigdb:/data/configdb',
+      '~/uservices/DeathStarBench/mediaMicroservices/tmp/movie-id_mongodb:/data/db/']
+  movie-info-memcached: {command: -m 11290 -c 1694 -R 37 -t 2 -f 1.8712098340305636,
+    hostname: movie-info-memcached, image: memcached, restart: always}
+  movie-info-mongodb:
+    command: --wiredTigerCacheSizeGB 11.278961479460213 --serviceExecutor adaptive
+      --wiredTigerCollectionBlockCompressor zlib --setParameter wiredTigerConcurrentReadTransactions=194
+      --setParameter wiredTigerConcurrentWriteTransactions=153
+    hostname: movie-info-mongodb
+    image: mongo
+    restart: always
+    volumes: ['~/uservices/DeathStarBench/mediaMicroservices/tmp/movie-info_mongoconfigdb:/data/configdb',
+      '~/uservices/DeathStarBench/mediaMicroservices/tmp/movie-info_mongodb:/data/db/']
+  movie-review-mongodb:
+    command: --wiredTigerCacheSizeGB 7.292632827180745 --serviceExecutor adaptive
+      --wiredTigerCollectionBlockCompressor zlib --setParameter wiredTigerConcurrentReadTransactions=41
+      --setParameter wiredTigerConcurrentWriteTransactions=116
+    hostname: movie-review-mongodb
+    image: mongo
+    ports: ['27017:27022']
+    restart: always
+    volumes: ['~/uservices/DeathStarBench/mediaMicroservices/tmp/movie-review_mongoconfigdb:/data/configdb',
+      '~/uservices/DeathStarBench/mediaMicroservices/tmp/movie-review_mongodb:/data/db/']
+  movie-review-redis:
+    command: --maxmemory 10350mb --maxmemory-policy allkeys-lfu --maxmemory-samples
+      6 --hz 9 --zset-max-ziplist-entries 335
+    hostname: movie-review-redis
+    image: redis
+    restart: always
+    volumes: ['~/uservices/DeathStarBench/mediaMicroservices/tmp/movie-review_redis:/data']
+  plot-memcached: {command: -m 13674 -c 1055 -R 13 -t 17 -f 2.0093191140469258, hostname: plot-memcached,
+    image: memcached, restart: always}
+  plot-mongodb:
+    command: --wiredTigerCacheSizeGB 11.947236353037646 --serviceExecutor synchronous
+      --wiredTigerCollectionBlockCompressor snappy --setParameter wiredTigerConcurrentReadTransactions=146
+      --setParameter wiredTigerConcurrentWriteTransactions=124
+    hostname: plot-mongodb
+    image: mongo
+    restart: always
+    volumes: ['~/uservices/DeathStarBench/mediaMicroservices/tmp/plot_mongoconfigdb:/data/configdb',
+      '~/uservices/DeathStarBench/mediaMicroservices/tmp/plot_mongodb:/data/db/']
+  rating-redis:
+    command: --maxmemory 13357mb --maxmemory-policy volatile-lru --maxmemory-samples
+      9 --hz 25 --zset-max-ziplist-entries 434
+    hostname: rating-redis
+    image: redis
+    restart: always
+    volumes: ['~/uservices/DeathStarBench/mediaMicroservices/tmp/rating_redis:/data']
+  review-storage-memcached: {command: -m 5926 -c 1259 -R 38 -t 15 -f 2.259518513948455,
+    hostname: review-storage-memcached, image: memcached, restart: always}
+  review-storage-mongodb:
+    command: --wiredTigerCacheSizeGB 9.711986011477716 --serviceExecutor adaptive
+      --wiredTigerCollectionBlockCompressor zlib --setParameter wiredTigerConcurrentReadTransactions=56
+      --setParameter wiredTigerConcurrentWriteTransactions=94
+    hostname: review-storage-mongodb
+    image: mongo
+    restart: always
+    volumes: ['~/uservices/DeathStarBench/mediaMicroservices/tmp/review-storage_mongoconfigdb:/data/configdb',
+      '~/uservices/DeathStarBench/mediaMicroservices/tmp/review-storag_mongodb:/data/db/']
+  user-memcached: {command: -m 1685 -c 1444 -R 86 -t 2 -f 1.5515336174201595, hostname: user-memcached,
+    image: memcached, restart: always}
+  user-mongodb:
+    command: --wiredTigerCacheSizeGB 11.3185832962947 --serviceExecutor synchronous
+      --wiredTigerCollectionBlockCompressor zlib --setParameter wiredTigerConcurrentReadTransactions=167
+      --setParameter wiredTigerConcurrentWriteTransactions=62
+    hostname: user-mongodb
+    image: mongo
+    restart: always
+    volumes: ['~/uservices/DeathStarBench/mediaMicroservices/tmp/user_mongoconfigdb:/data/configdb',
+      '~/uservices/DeathStarBench/mediaMicroservices/tmp/user_mongodb:/data/db/']
+  user-review-mongodb:
+    command: --wiredTigerCacheSizeGB 15.357638259979115 --serviceExecutor synchronous
+      --wiredTigerCollectionBlockCompressor none --setParameter wiredTigerConcurrentReadTransactions=147
+      --setParameter wiredTigerConcurrentWriteTransactions=215
+    hostname: user-review-mongodb
+    image: mongo
+    restart: always
+    volumes: ['~/uservices/DeathStarBench/mediaMicroservices/tmp/user-review_mongoconfigdb:/data/configdb',
+      '~/uservices/DeathStarBench/mediaMicroservices/tmp/user-review_mongodb:/data/db/']
+  user-review-redis:
+    command: --maxmemory 16394mb --maxmemory-policy volatile-lfu --maxmemory-samples
+      6 --hz 86 --zset-max-ziplist-entries 68
+    hostname: user-review-redis
+    image: redis
+    restart: always
+    volumes: ['~/uservices/DeathStarBench/mediaMicroservices/tmp/user-review_redis:/data']
+version: '3'

@@ -1,0 +1,10 @@
+version: '3'
+services:
+  user-timeline-mongodb:
+    image: mongo
+    hostname: user-timeline-mongodb
+    restart: always
+networks:
+  default:
+    external:
+      name: social-network-overlay

@@ -1,0 +1,55 @@
+version: "3"
+services:
+
+  social-graph-service:
+    image: pacelab/service_base
+    hostname: social-graph-service
+#    ports:
+#      - 10000:9090
+    restart: always
+    entrypoint: SocialGraphService
+
+  user-timeline-service:
+    image: pacelab/service_base
+    hostname: user-timeline-service
+#    ports:
+#      - 10003:9090
+    restart: always
+    entrypoint: UserTimelineService
+
+  url-shorten-service:
+    image: pacelab/service_base
+    hostname: url-shorten-service
+#    ports:
+#      - 10004:9090
+    restart: always
+    entrypoint: UrlShortenService
+
+  user-service:
+    image: pacelab/service_base
+    hostname: user-service
+#    ports:
+#      - 10005:9090
+    restart: always
+    entrypoint: UserService
+
+  unique-id-service:
+    image: pacelab/service_base
+    hostname: unique-id-service
+#    ports:
+#      - 10008:9090
+    restart: always
+    entrypoint: UniqueIdService
+
+  user-mention-service:
+    image: pacelab/service_base
+    hostname: user-mention-service
+#    ports:
+#      - 10009:9090
+    restart: always
+    entrypoint: UserMentionService
+
+networks:
+  default:
+    external:
+      name: social-network-overlay

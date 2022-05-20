@@ -1,0 +1,10 @@
+version: '3'
+services:
+  media-memcached:
+    image: memcached
+    hostname: media-memcached
+    restart: always
+networks:
+  default:
+    external:
+      name: social-network-overlay

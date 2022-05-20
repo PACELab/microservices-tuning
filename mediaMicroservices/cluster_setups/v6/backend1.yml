@@ -1,0 +1,69 @@
+version: "3"
+services:
+
+  movie-id-mongodb:
+    image: mongo
+    hostname: movie-id-mongodb
+#    ports:
+#      - 27018:27017
+    restart: always
+
+  movie-id-memcached:
+    image: memcached
+    hostname: movie-id-memcached
+#    ports:
+#      - 11212:11211
+    restart: always
+
+  rating-redis:
+    image: redis
+    hostname: rating-redis
+#    ports:
+#      - 6382:6379
+    restart: always
+
+  user-mongodb:
+    image: mongo
+    hostname: user-mongodb
+#    ports:
+#      - 27019:27017
+    restart: always
+
+  user-memcached:
+    image: memcached
+    hostname: user-memcached
+#    ports:
+#      - 11213:11211
+    restart: always
+
+  compose-review-memcached:
+    image: memcached
+    hostname: compose-review-memcached
+#    ports:
+#      - 11214:11211
+    restart: always
+
+  review-storage-mongodb:
+    image: mongo
+    hostname: review-storage-mongodb
+#    ports:
+#      - 27020:27017
+    restart: always
+
+  review-storage-memcached:
+    image: memcached
+    hostname: review-storage-memcached
+#    ports:
+#      - 11215:11211
+    restart: always
+    
+  user-review-mongodb:
+    image: mongo
+    hostname: user-review-mongodb
+#    ports:
+#      - 27021:27017
+    restart: always    
+networks:
+  default:
+    external:
+      name: media-overlay

@@ -1,0 +1,55 @@
+networks:
+  default:
+    external: {name: social-network-overlay-2}
+services:
+  compose-post-service:
+    depends_on: [write-home-timeline-rabbitmq]
+    entrypoint: ComposePostService
+    hostname: compose-post-service
+    image: gaganso/threadmanager:service_threads
+    restart: always
+    volumes: ['~/uservices/DeathStarBench/socialNetwork/config/parameters-config.txt:/social-network-microservices/config/parameters-config.txt']
+  home-timeline-service: {entrypoint: HomeTimelineService, hostname: home-timeline-service,
+    image: 'gaganso/threadmanager:service_threads', restart: always}
+  media-service: {entrypoint: MediaService, hostname: media-service, image: 'gaganso/threadmanager:service_threads',
+    restart: always}
+  post-storage-service:
+    entrypoint: PostStorageService
+    hostname: post-storage-service
+    image: gaganso/threadmanager:service_threads
+    ports: ['10002:9090']
+    restart: always
+  social-graph-service: {entrypoint: SocialGraphService, hostname: social-graph-service,
+    image: 'gaganso/threadmanager:service_threads', restart: always}
+  text-service: {entrypoint: TextService, hostname: text-service, image: 'gaganso/threadmanager:service_threads',
+    restart: always}
+  unique-id-service: {entrypoint: UniqueIdService, hostname: unique-id-service, image: 'gaganso/threadmanager:service_threads',
+    restart: always}
+  url-shorten-service:
+    entrypoint: UrlShortenService
+    hostname: url-shorten-service
+    image: gaganso/threadmanager:service_threads
+    restart: always
+    volumes: ['~/uservices/DeathStarBench/socialNetwork/config/parameters-config.txt:/social-network-microservices/config/parameters-config.txt']
+  user-mention-service: {entrypoint: UserMentionService, hostname: user-mention-service,
+    image: 'gaganso/threadmanager:service_threads', restart: always}
+  user-service: {entrypoint: UserService, hostname: user-service, image: 'gaganso/threadmanager:service_threads',
+    restart: always}
+  user-timeline-service:
+    entrypoint: UserTimelineService
+    hostname: user-timeline-service
+    image: gaganso/threadmanager:service_threads
+    restart: always
+    volumes: ['~/uservices/DeathStarBench/socialNetwork/config/parameters-config.txt:/social-network-microservices/config/parameters-config.txt']
+  write-home-timeline-rabbitmq:
+    environment: {RABBITMQ_DEFAULT_VHOST: /, RABBITMQ_ERLANG_COOKIE: WRITE-HOME-TIMELINE-RABBITMQ}
+    hostname: write-home-timeline-rabbitmq
+    image: rabbitmq
+    restart: always
+  write-home-timeline-service:
+    depends_on: [write-home-timeline-rabbitmq]
+    entrypoint: WriteHomeTimelineService
+    hostname: write-home-timeline-service
+    image: gaganso/threadmanager:service_threads
+    restart: always
+version: '3'

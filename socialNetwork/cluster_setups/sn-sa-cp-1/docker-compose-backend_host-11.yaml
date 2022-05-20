@@ -1,0 +1,51 @@
+networks:
+  default:
+    external: {name: social-network-overlay-1}
+services:
+  compose-post-redis: {command: --maxmemory 10810mb --maxmemory-policy volatile-ttl
+      --maxmemory-samples 9 --hz 91 --zset-max-ziplist-entries 400, hostname: compose-post-redis,
+    image: redis, restart: always}
+  home-timeline-redis:
+    command: --maxmemory 14180mb --maxmemory-policy volatile-lru --maxmemory-samples
+      6 --hz 81 --zset-max-ziplist-entries 180
+    hostname: home-timeline-redis
+    image: redis
+    restart: always
+    volumes: ['~/uservices/DeathStarBench/socialNetwork/tmp/home-timeline_redis:/data']
+  media-memcached: {hostname: media-memcached, image: memcached, restart: always}
+  media-mongodb: {hostname: media-mongodb, image: mongo, restart: always}
+  post-storage-memcached: {command: -m 7414 -c 1284 -R 24 -t 3 -f 2.05642102926422,
+    hostname: post-storage-memcached, image: memcached, restart: always}
+  post-storage-mongodb:
+    command: --wiredTigerCacheSizeGB 1.7059818604593378 --serviceExecutor synchronous
+      --wiredTigerCollectionBlockCompressor none --setParameter wiredTigerConcurrentReadTransactions=51
+      --setParameter wiredTigerConcurrentWriteTransactions=129
+    hostname: post-storage-mongodb
+    image: mongo
+    restart: always
+    volumes: ['~/uservices/DeathStarBench/socialNetwork/tmp/post-storage_mongoconfigdb:/data/configdb',
+      '~/uservices/DeathStarBench/socialNetwork/tmp/post-storage_mongodb:/data/db']
+  social-graph-mongodb:
+    hostname: social-graph-mongodb
+    image: mongo
+    restart: always
+    volumes: ['~/uservices/DeathStarBench/socialNetwork/tmp/social-graph_mongoconfigdb:/data/configdb',
+      '~/uservices/DeathStarBench/socialNetwork/tmp/social-graph_mongodb:/data/db/']
+  social-graph-redis: {command: --maxmemory 13718mb --maxmemory-policy volatile-random
+      --maxmemory-samples 5 --hz 8 --zset-max-ziplist-entries 404, hostname: social-graph-redis,
+    image: redis, restart: always}
+  url-shorten-memcached: {hostname: url-shorten-memcached, image: memcached, restart: always}
+  url-shorten-mongodb: {hostname: url-shorten-mongodb, image: mongo, restart: always}
+  user-memcached: {hostname: user-memcached, image: memcached, restart: always}
+  user-mongodb: {hostname: user-mongodb, image: mongo, restart: always}
+  user-timeline-mongodb:
+    command: --wiredTigerCacheSizeGB 8.62110602885095 --serviceExecutor synchronous
+      --wiredTigerCollectionBlockCompressor zlib --setParameter wiredTigerConcurrentReadTransactions=88
+      --setParameter wiredTigerConcurrentWriteTransactions=150
+    hostname: user-timeline-mongodb
+    image: mongo
+    restart: always
+    volumes: ['~/uservices/DeathStarBench/socialNetwork/tmp/user-timeline_mongoconfigdb:/data/configdb',
+      '~/uservices/DeathStarBench/socialNetwork/tmp/user-timeline_mongodb:/data/db']
+  user-timeline-redis: {hostname: user-timeline-redis, image: redis, restart: always}
+version: '3'

@@ -1,0 +1,10 @@
+version: '3'
+services:
+  url-shorten-mongodb:
+    image: mongo
+    hostname: url-shorten-mongodb
+    restart: always
+networks:
+  default:
+    external:
+      name: social-network-overlay

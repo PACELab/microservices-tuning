@@ -1,0 +1,124 @@
+version: "3"
+services:
+  social-graph-mongodb:
+    image: mongo
+    hostname: social-graph-mongodb
+#    ports:
+#      - 27018:27017
+    restart: always
+
+  social-graph-redis:
+    image: redis
+    hostname: social-graph-redis
+#    ports:
+#      - 6380:6379
+    restart: always
+
+  write-home-timeline-service:
+    image: pacelab/service_base
+    hostname: write-home-timeline-service
+    restart: always
+    entrypoint: WriteHomeTimelineService
+    depends_on:
+      - write-home-timeline-rabbitmq
+
+  write-home-timeline-rabbitmq:
+    image: rabbitmq
+    hostname: write-home-timeline-rabbitmq
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "WRITE-HOME-TIMELINE-RABBITMQ"
+      RABBITMQ_DEFAULT_VHOST: "/"
+#    ports:
+#      - 15672:15672
+#      - 5672:5672
+    restart: always
+
+  compose-post-service:
+    image: pacelab/service_base
+    hostname: compose-post-service
+#    ports:
+#      - 10001:9090
+    restart: always
+    entrypoint: ComposePostService
+    depends_on:
+      - write-home-timeline-rabbitmq
+
+  compose-post-redis:
+    image: redis
+    hostname: compose-post-redis
+#    ports:
+#      - 6382:6379
+    restart: always
+
+  url-shorten-service:
+    image: pacelab/service_base
+    hostname: url-shorten-service
+#    ports:
+#      - 10004:9090
+    restart: always
+    entrypoint: UrlShortenService
+
+  url-shorten-memcached:
+    image: memcached
+    hostname: url-shorten-memcached
+#    ports:
+#      - 11213:11211
+    restart: always
+
+  user-service:
+    image: pacelab/service_base
+    hostname: user-service
+#    ports:
+#      - 10005:9090
+    restart: always
+    entrypoint: UserService
+
+  user-memcached:
+    image: memcached
+    hostname: user-memcached
+#    ports:
+#      - 11214:11211
+    restart: always
+
+  text-service:
+    image: pacelab/service_base
+    hostname: text-service
+#    ports:
+#      - 10007:9090
+    restart: always
+    entrypoint: TextService
+
+  unique-id-service:
+    image: pacelab/service_base
+    hostname: unique-id-service
+#    ports:
+#      - 10008:9090
+    restart: always
+    entrypoint: UniqueIdService
+
+  user-mention-service:
+    image: pacelab/service_base
+    hostname: user-mention-service
+#    ports:
+#      - 10009:9090
+    restart: always
+    entrypoint: UserMentionService
+
+  post-storage-mongodb:
+    image: mongo
+    hostname: post-storage-mongodb
+#    ports:
+#      - 27019:27017
+    restart: always
+
+  user-timeline-mongodb:
+    image: mongo
+    hostname: user-timeline-mongodb
+#    ports:
+#      - 27020:27017
+    restart: always
+
+networks:
+  default:
+    external:
+      name: social-network-overlay    

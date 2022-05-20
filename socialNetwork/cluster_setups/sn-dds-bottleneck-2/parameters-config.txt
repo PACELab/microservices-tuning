@@ -1,0 +1,8 @@
+compose-post-service_io_threads,22
+compose-post-service_worker_threads,937
+post-storage-service_io_threads,22
+post-storage-service_worker_threads,534
+user-timeline-service_io_threads,32
+user-timeline-service_worker_threads,226
+user-mention-service_io_threads,11
+user-mention-service_worker_threads,950

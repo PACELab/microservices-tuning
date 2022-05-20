@@ -1,0 +1,68 @@
+networks:
+  default:
+    external: {name: social-network-overlay-1}
+services:
+  compose-post-redis: {command: --maxmemory 17793mb --maxmemory-policy noeviction
+      --maxmemory-samples 4 --hz 28 --zset-max-ziplist-entries 128, hostname: compose-post-redis,
+    image: redis, restart: always}
+  home-timeline-redis:
+    command: --maxmemory 10689mb --maxmemory-policy volatile-random --maxmemory-samples
+      8 --hz 7 --zset-max-ziplist-entries 355
+    hostname: home-timeline-redis
+    image: redis
+    restart: always
+    volumes: ['~/uservices/DeathStarBench/socialNetwork/tmp/home-timeline_redis:/data']
+  media-memcached: {command: -m 18327 -c 1982 -R 89 -t 6 -f 2.0904092817530584, hostname: media-memcached,
+    image: memcached, restart: always}
+  media-mongodb: {command: --wiredTigerCacheSizeGB 7.468455818430394 --serviceExecutor
+      adaptive --wiredTigerCollectionBlockCompressor zlib --setParameter wiredTigerConcurrentReadTransactions=69
+      --setParameter wiredTigerConcurrentWriteTransactions=74, hostname: media-mongodb,
+    image: mongo, restart: always}
+  post-storage-memcached: {command: -m 7256 -c 1606 -R 67 -t 7 -f 1.747563736270743,
+    hostname: post-storage-memcached, image: memcached, restart: always}
+  post-storage-mongodb:
+    command: --wiredTigerCacheSizeGB 2.4150565457553697 --serviceExecutor adaptive
+      --wiredTigerCollectionBlockCompressor zlib --setParameter wiredTigerConcurrentReadTransactions=227
+      --setParameter wiredTigerConcurrentWriteTransactions=89
+    hostname: post-storage-mongodb
+    image: mongo
+    restart: always
+    volumes: ['~/uservices/DeathStarBench/socialNetwork/tmp/post-storage_mongoconfigdb:/data/configdb',
+      '~/uservices/DeathStarBench/socialNetwork/tmp/post-storage_mongodb:/data/db']
+  social-graph-mongodb:
+    command: --wiredTigerCacheSizeGB 19.12617154868549 --serviceExecutor adaptive
+      --wiredTigerCollectionBlockCompressor none --setParameter wiredTigerConcurrentReadTransactions=173
+      --setParameter wiredTigerConcurrentWriteTransactions=35
+    hostname: social-graph-mongodb
+    image: mongo
+    restart: always
+    volumes: ['~/uservices/DeathStarBench/socialNetwork/tmp/social-graph_mongoconfigdb:/data/configdb',
+      '~/uservices/DeathStarBench/socialNetwork/tmp/social-graph_mongodb:/data/db/']
+  social-graph-redis: {command: --maxmemory 14383mb --maxmemory-policy volatile-ttl
+      --maxmemory-samples 6 --hz 21 --zset-max-ziplist-entries 153, hostname: social-graph-redis,
+    image: redis, restart: always}
+  url-shorten-memcached: {command: -m 10790 -c 1921 -R 55 -t 22 -f 1.771245435522161,
+    hostname: url-shorten-memcached, image: memcached, restart: always}
+  url-shorten-mongodb: {command: --wiredTigerCacheSizeGB 10.769450788630861 --serviceExecutor
+      adaptive --wiredTigerCollectionBlockCompressor zlib --setParameter wiredTigerConcurrentReadTransactions=117
+      --setParameter wiredTigerConcurrentWriteTransactions=62, hostname: url-shorten-mongodb,
+    image: mongo, restart: always}
+  user-memcached: {command: -m 18325 -c 952 -R 38 -t 4 -f 2.9335249329903554, hostname: user-memcached,
+    image: memcached, restart: always}
+  user-mongodb: {command: --wiredTigerCacheSizeGB 4.4756623300201905 --serviceExecutor
+      synchronous --wiredTigerCollectionBlockCompressor zlib --setParameter wiredTigerConcurrentReadTransactions=230
+      --setParameter wiredTigerConcurrentWriteTransactions=36, hostname: user-mongodb,
+    image: mongo, restart: always}
+  user-timeline-mongodb:
+    command: --wiredTigerCacheSizeGB 4.2485338148834675 --serviceExecutor synchronous
+      --wiredTigerCollectionBlockCompressor snappy --setParameter wiredTigerConcurrentReadTransactions=213
+      --setParameter wiredTigerConcurrentWriteTransactions=82
+    hostname: user-timeline-mongodb
+    image: mongo
+    restart: always
+    volumes: ['~/uservices/DeathStarBench/socialNetwork/tmp/user-timeline_mongoconfigdb:/data/configdb',
+      '~/uservices/DeathStarBench/socialNetwork/tmp/user-timeline_mongodb:/data/db']
+  user-timeline-redis: {command: --maxmemory 11788mb --maxmemory-policy volatile-lfu
+      --maxmemory-samples 5 --hz 83 --zset-max-ziplist-entries 307, hostname: user-timeline-redis,
+    image: redis, restart: always}
+version: '3'

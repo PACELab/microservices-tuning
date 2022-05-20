@@ -1,0 +1,14 @@
+compose-review-service_io_threads,5
+compose-review-service_worker_threads,958
+user-service_io_threads,41
+user-service_worker_threads,483
+rating-service_io_threads,3
+rating-service_worker_threads,166
+movie-review-service_io_threads,22
+movie-review-service_worker_threads,495
+user-review-service_io_threads,45
+user-review-service_worker_threads,706
+review-storage-service_io_threads,8
+review-storage-service_worker_threads,282
+movie-id-service_io_threads,41
+movie-id-service_worker_threads,936

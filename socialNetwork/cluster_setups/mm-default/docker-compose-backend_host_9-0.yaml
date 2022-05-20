@@ -1,0 +1,6 @@
+networks:
+  default:
+    external: {name: media-microservices-overlay-2}
+services:
+  movie-info-mongodb: {hostname: movie-info-mongodb, image: mongo, restart: always}
+version: '3'

@@ -1,0 +1,39 @@
+networks:
+  default:
+    external: {name: train-ticket-overlay-2}
+services:
+  redis:
+    hostname: ts-redis
+    image: redis
+    ports: ['6379:6379']
+    restart: always
+  ts-account-mongo: {hostname: ts-account-mongo, image: mongo, restart: always}
+  ts-assurance-mongo: {hostname: ts-assurance-mongo, image: mongo, restart: always}
+  ts-auth-mongo: {hostname: ts-auth-mongo, image: mongo, restart: always}
+  ts-config-mongo: {hostname: ts-config-mongo, image: mongo, restart: always}
+  ts-consign-mongo: {hostname: ts-consign-mongo, image: mongo, restart: always}
+  ts-consign-price-mongo: {hostname: ts-consign-price-mongo, image: mongo, restart: always}
+  ts-contacts-mongo: {hostname: ts-contacts-mongo, image: mongo, restart: always}
+  ts-food-map-mongo: {hostname: ts-food-map-mongo, image: mongo, restart: always}
+  ts-food-mongo: {hostname: ts-food-mongo, image: mongo, restart: always}
+  ts-inside-payment-mongo: {hostname: ts-inside-payment-mongo, image: mongo, restart: always}
+  ts-news-mongo: {hostname: ts-news-mongo, image: mongo, restart: always}
+  ts-order-mongo: {hostname: ts-order-mongo, image: mongo, restart: always}
+  ts-order-other-mongo: {hostname: ts-order-other-mongo, image: mongo, restart: always}
+  ts-payment-mongo: {hostname: ts-payment-mongo, image: mongo, restart: always}
+  ts-price-mongo: {hostname: ts-price-mongo, image: mongo, restart: always}
+  ts-rebook-mongo: {hostname: ts-rebook-mongo, image: mongo, restart: always}
+  ts-route-mongo: {hostname: ts-route-mongo, image: mongo, restart: always}
+  ts-security-mongo: {hostname: ts-security-mongo, image: mongo, restart: always}
+  ts-station-mongo: {hostname: ts-station-mongo, image: mongo, restart: always}
+  ts-ticket-office-mongo: {hostname: ts-ticket-office-mongo, image: mongo, restart: always}
+  ts-train-mongo: {hostname: ts-train-mongo, image: mongo, restart: always}
+  ts-travel-mongo: {hostname: ts-travel-mongo, image: mongo, restart: always}
+  ts-travel2-mongo: {hostname: ts-travel2-mongo, image: mongo, restart: always}
+  ts-user-mongo: {hostname: ts-user-mongo, image: mongo, restart: always}
+  ts-voucher-mysql:
+    environment: {MYSQL_ROOT_PASSWORD: root}
+    hostname: ts-voucher-mysql
+    image: mysql
+    restart: always
+version: '3'

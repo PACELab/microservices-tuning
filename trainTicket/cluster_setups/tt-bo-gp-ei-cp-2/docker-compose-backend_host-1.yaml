@@ -1,0 +1,184 @@
+networks:
+  default:
+    external: {name: train-ticket-overlay-1}
+services:
+  redis:
+    hostname: ts-redis
+    image: redis
+    ports: ['6379:6379']
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/tt-redis_redis:/data']
+  ts-account-mongo:
+    hostname: ts-account-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/account_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/account_mongodb:/data/db']
+  ts-assurance-mongo:
+    hostname: ts-assurance-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/assurance_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/assurance_mongodb:/data/db']
+  ts-auth-mongo:
+    hostname: ts-auth-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/auth_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/auth_mongodb:/data/db']
+  ts-config-mongo:
+    hostname: ts-config-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/config_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/config_mongodb:/data/db']
+  ts-consign-mongo:
+    hostname: ts-consign-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/consign_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/consign_mongodb:/data/db']
+  ts-consign-price-mongo:
+    hostname: ts-consign-price-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/consign-price_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/consign-price_mongodb:/data/db']
+  ts-contacts-mongo:
+    command: --wiredTigerCacheSizeGB 3.6742014086529284 --serviceExecutor adaptive
+      --wiredTigerCollectionBlockCompressor snappy --setParameter wiredTigerConcurrentReadTransactions=157
+      --setParameter wiredTigerConcurrentWriteTransactions=223
+    hostname: ts-contacts-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/contacts_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/contacts_mongodb:/data/db']
+  ts-food-map-mongo:
+    hostname: ts-food-map-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/food-map_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/food-map_mongodb:/data/db']
+  ts-food-mongo:
+    hostname: ts-food-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/food_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/food_mongodb:/data/db']
+  ts-inside-payment-mongo:
+    hostname: ts-inside-payment-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/inside-payment_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/inside-payment_mongodb:/data/db']
+  ts-news-mongo:
+    hostname: ts-news-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/news_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/news_mongodb:/data/db']
+  ts-order-mongo:
+    command: --wiredTigerCacheSizeGB 18.441444878436034 --serviceExecutor synchronous
+      --wiredTigerCollectionBlockCompressor zstd --setParameter wiredTigerConcurrentReadTransactions=216
+      --setParameter wiredTigerConcurrentWriteTransactions=101
+    hostname: ts-order-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/order_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/order_mongodb:/data/db']
+  ts-order-other-mongo:
+    command: --wiredTigerCacheSizeGB 4.504522779040509 --serviceExecutor adaptive
+      --wiredTigerCollectionBlockCompressor zlib --setParameter wiredTigerConcurrentReadTransactions=224
+      --setParameter wiredTigerConcurrentWriteTransactions=75
+    hostname: ts-order-other-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/order-other_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/order-other_mongodb:/data/db']
+  ts-payment-mongo:
+    hostname: ts-payment-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/payment_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/payment_mongodb:/data/db']
+  ts-price-mongo:
+    hostname: ts-price-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/price_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/price_mongodb:/data/db']
+  ts-rebook-mongo:
+    hostname: ts-rebook-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/rebook_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/rebook_mongodb:/data/db']
+  ts-route-mongo:
+    command: --wiredTigerCacheSizeGB 18.295403574666725 --serviceExecutor synchronous
+      --wiredTigerCollectionBlockCompressor zstd --setParameter wiredTigerConcurrentReadTransactions=145
+      --setParameter wiredTigerConcurrentWriteTransactions=135
+    hostname: ts-route-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/route_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/route_mongodb:/data/db']
+  ts-security-mongo:
+    command: --wiredTigerCacheSizeGB 2.0105705787962496 --serviceExecutor synchronous
+      --wiredTigerCollectionBlockCompressor zlib --setParameter wiredTigerConcurrentReadTransactions=215
+      --setParameter wiredTigerConcurrentWriteTransactions=120
+    hostname: ts-security-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/security_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/security_mongodb:/data/db']
+  ts-station-mongo:
+    command: --wiredTigerCacheSizeGB 3.468741295879207 --serviceExecutor synchronous
+      --wiredTigerCollectionBlockCompressor zstd --setParameter wiredTigerConcurrentReadTransactions=233
+      --setParameter wiredTigerConcurrentWriteTransactions=165
+    hostname: ts-station-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/station_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/station_mongodb:/data/db']
+  ts-ticket-office-mongo:
+    hostname: ts-ticket-office-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/ticket-office_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/ticket-office_mongodb:/data/db']
+  ts-train-mongo:
+    hostname: ts-train-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/train_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/train_mongodb:/data/db']
+  ts-travel-mongo:
+    command: --wiredTigerCacheSizeGB 6.747136616540629 --serviceExecutor adaptive
+      --wiredTigerCollectionBlockCompressor zlib --setParameter wiredTigerConcurrentReadTransactions=99
+      --setParameter wiredTigerConcurrentWriteTransactions=54
+    hostname: ts-travel-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/travel_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/travel_mongodb:/data/db']
+  ts-travel2-mongo:
+    command: --wiredTigerCacheSizeGB 16.50366838486963 --serviceExecutor synchronous
+      --wiredTigerCollectionBlockCompressor snappy --setParameter wiredTigerConcurrentReadTransactions=83
+      --setParameter wiredTigerConcurrentWriteTransactions=175
+    hostname: ts-travel2-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/travel2_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/travel2_mongodb:/data/db']
+  ts-user-mongo:
+    hostname: ts-user-mongo
+    image: mongo
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/user_mongoconfigdb:/data/configdb',
+      '/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/user_mongodb:/data/db']
+  ts-voucher-mysql:
+    hostname: ts-voucher-mysql
+    image: mysql
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/tmp/voucher_mysql:/var/lib/mysql']
+version: '3'

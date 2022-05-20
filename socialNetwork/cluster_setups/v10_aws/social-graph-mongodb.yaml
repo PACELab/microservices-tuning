@@ -1,0 +1,10 @@
+version: '3'
+services:
+  social-graph-mongodb:
+    image: mongo
+    hostname: social-graph-mongodb
+    restart: always
+networks:
+  default:
+    external:
+      name: social-network-overlay

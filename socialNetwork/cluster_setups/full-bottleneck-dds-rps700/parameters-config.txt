@@ -1,0 +1,6 @@
+social-graph-service_io_threads,34.0
+social-graph-service_worker_threads,650.0
+compose-post-service_io_threads,41.0
+compose-post-service_worker_threads,159.0
+home-timeline-service_io_threads,42.0
+home-timeline-service_worker_threads,140.0

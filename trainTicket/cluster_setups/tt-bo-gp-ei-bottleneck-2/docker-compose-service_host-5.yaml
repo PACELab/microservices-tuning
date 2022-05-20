@@ -1,0 +1,206 @@
+networks:
+  default:
+    external: {name: train-ticket-overlay-1}
+services:
+  ts-admin-basic-info-service:
+    hostname: ts-admin-basic-info-service
+    image: gaganso/ts-admin-basic-info-service-with-jaeger
+    ports: ['18767:18767']
+    restart: always
+  ts-admin-order-service:
+    hostname: ts-admin-order-service
+    image: gaganso/ts-admin-order-service-with-jaeger
+    ports: ['16112:16112']
+    restart: always
+  ts-admin-route-service:
+    hostname: ts-admin-route-service
+    image: gaganso/ts-admin-route-service-with-jaeger
+    ports: ['16113:16113']
+    restart: always
+  ts-admin-travel-service:
+    hostname: ts-admin-travel-service
+    image: gaganso/ts-admin-travel-service-with-jaeger
+    ports: ['16114:16114']
+    restart: always
+  ts-admin-user-service:
+    hostname: ts-admin-user-service
+    image: gaganso/ts-admin-user-service-with-jaeger
+    ports: ['16115:16115']
+    restart: always
+  ts-assurance-service:
+    hostname: ts-assurance-service
+    image: gaganso/ts-assurance-service-with-jaeger
+    ports: ['18888:18888']
+    restart: always
+  ts-auth-service:
+    hostname: ts-auth-service
+    image: gaganso/ts-auth-service-with-jaeger
+    ports: ['12340:12340']
+    restart: always
+  ts-basic-service:
+    hostname: ts-basic-service
+    image: gaganso/ts-basic-service-with-jaeger
+    ports: ['15680:15680']
+    restart: always
+  ts-cancel-service:
+    hostname: ts-cancel-service
+    image: gaganso/ts-cancel-service-with-jaeger
+    ports: ['18885:18885']
+    restart: always
+  ts-config-service:
+    hostname: ts-config-service
+    image: gaganso/ts-config-service-with-jaeger
+    ports: ['15679:15679']
+    restart: always
+  ts-consign-price-service:
+    hostname: ts-consign-price-service
+    image: gaganso/ts-consign-price-service-with-jaeger
+    ports: ['16110:16110']
+    restart: always
+  ts-consign-service:
+    hostname: ts-consign-service
+    image: gaganso/ts-consign-service-with-jaeger
+    ports: ['16111:16111']
+    restart: always
+  ts-contacts-service:
+    hostname: ts-contacts-service
+    image: gaganso/ts-contacts-service-with-jaeger
+    ports: ['12347:12347']
+    restart: always
+  ts-execute-service:
+    hostname: ts-execute-service
+    image: gaganso/ts-execute-service-with-jaeger
+    ports: ['12386:12386']
+    restart: always
+  ts-food-map-service:
+    hostname: ts-food-map-service
+    image: gaganso/ts-food-map-service-with-jaeger
+    ports: ['18855:18855']
+    restart: always
+  ts-food-service:
+    hostname: ts-food-service
+    image: gaganso/ts-food-service-with-jaeger
+    ports: ['18856:18856']
+    restart: always
+  ts-inside-payment-service:
+    hostname: ts-inside-payment-service
+    image: gaganso/ts-inside-payment-service-with-jaeger
+    ports: ['18673:18673']
+    restart: always
+  ts-news-service:
+    hostname: ts-news-service
+    image: gaganso/ts-news-service-with-jaeger
+    ports: ['12862:12862']
+    restart: always
+  ts-notification-service:
+    hostname: ts-notification-service
+    image: gaganso/ts-notification-service-with-jaeger
+    ports: ['17853:17853']
+    restart: always
+  ts-order-other-service:
+    hostname: ts-order-other-service
+    image: gaganso/ts-order-other-service-with-jaeger
+    ports: ['12032:12032']
+    restart: always
+  ts-order-service:
+    hostname: ts-order-service
+    image: gaganso/ts-order-service-with-jaeger
+    ports: ['12031:12031']
+    restart: always
+  ts-payment-service:
+    hostname: ts-payment-service
+    image: gaganso/ts-payment-service-with-jaeger
+    ports: ['19001:19001']
+    restart: always
+  ts-preserve-other-service:
+    hostname: ts-preserve-other-service
+    image: gaganso/ts-preserve-other-service-with-jaeger
+    ports: ['14569:14569']
+    restart: always
+  ts-preserve-service:
+    hostname: ts-preserve-service
+    image: gaganso/ts-preserve-service-with-jaeger
+    ports: ['14568:14568']
+    restart: always
+  ts-price-service:
+    hostname: ts-price-service
+    image: gaganso/ts-price-service-with-jaeger
+    ports: ['16579:16579']
+    restart: always
+  ts-rebook-service:
+    hostname: ts-rebook-service
+    image: gaganso/ts-rebook-service-with-jaeger
+    ports: ['18886:18886']
+    restart: always
+  ts-route-plan-service:
+    hostname: ts-route-plan-service
+    image: gaganso/ts-route-plan-service-with-jaeger
+    ports: ['14578:14578']
+    restart: always
+  ts-route-service:
+    hostname: ts-route-service
+    image: gaganso/ts-route-service-with-jaeger
+    ports: ['11178:11178']
+    restart: always
+  ts-seat-service:
+    hostname: ts-seat-service
+    image: gaganso/ts-seat-service-with-jaeger
+    ports: ['18898:18898']
+    restart: always
+  ts-security-service:
+    hostname: ts-security-service
+    image: gaganso/ts-security-service-with-jaeger
+    ports: ['11188:11188']
+    restart: always
+  ts-station-service:
+    hostname: ts-station-service
+    image: gaganso/ts-station-service-with-jaeger
+    ports: ['12345:12345']
+    restart: always
+  ts-ticket-office-service:
+    hostname: ts-ticket-office-service
+    image: gaganso/ts-ticket-office-service-with-jaeger
+    ports: ['16108:16108']
+    restart: always
+  ts-ticketinfo-service:
+    hostname: ts-ticketinfo-service
+    image: gaganso/ts-ticketinfo-service-with-jaeger
+    ports: ['15681:15681']
+    restart: always
+  ts-train-service:
+    hostname: ts-train-service
+    image: gaganso/ts-train-service-with-jaeger
+    ports: ['14567:14567']
+    restart: always
+  ts-travel-plan-service:
+    hostname: ts-travel-plan-service
+    image: gaganso/ts-travel-plan-service-with-jaeger
+    ports: ['14322:14322']
+    restart: always
+  ts-travel-service:
+    hostname: ts-travel-service
+    image: gaganso/ts-travel-service-with-jaeger
+    ports: ['12346:12346']
+    restart: always
+  ts-travel2-service:
+    hostname: ts-travel2-service
+    image: gaganso/ts-travel2-service-with-jaeger
+    ports: ['16346:16346']
+    restart: always
+  ts-user-service:
+    hostname: ts-user-service
+    image: gaganso/ts-user-service-with-jaeger
+    ports: ['12342:12342']
+    restart: always
+  ts-verification-code-service:
+    hostname: ts-verification-code-service
+    image: gaganso/ts-verification-code-service-with-jaeger
+    ports: ['15678:15678']
+    restart: always
+  ts-voucher-service:
+    hostname: ts-voucher-service
+    image: gaganso/ts-voucher-service-with-jaeger
+    ports: ['16101:16101']
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/trainTicket/volumes/voucher_mysql:/var/lib/mysql']
+version: '3'

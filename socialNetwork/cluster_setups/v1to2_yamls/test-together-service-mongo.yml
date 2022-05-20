@@ -1,0 +1,21 @@
+version: "3"
+services:
+  social-graph-service:
+    image: gaganso/service_base
+    hostname: social-graph-service
+#    ports:
+#      - 10000:9090
+    restart: always
+    entrypoint: SocialGraphService
+
+  social-graph-mongodb:
+    image: mongo
+    hostname: social-graph-mongodb
+#    ports:
+#      - 27018:27017
+    restart: always
+
+networks:
+  default:
+    external:
+      name: test-overlay

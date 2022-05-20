@@ -1,0 +1,16 @@
+compose-review-service_io_threads,24
+compose-review-service_worker_threads,723
+movie-review-service_io_threads,37
+movie-review-service_worker_threads,713
+plot-service_io_threads,9
+plot-service_worker_threads,35
+user-review-service_io_threads,26
+user-review-service_worker_threads,412
+unique-id-service_io_threads,39
+unique-id-service_worker_threads,628
+review-storage-service_io_threads,4
+review-storage-service_worker_threads,723
+text-service_io_threads,44
+text-service_worker_threads,300
+movie-id-service_io_threads,16
+movie-id-service_worker_threads,822

@@ -1,0 +1,20 @@
+networks:
+  default:
+    external: {name: media-microservices-overlay-2}
+services:
+  dns-media:
+    hostname: dns-media
+    image: defreitas/dns-proxy-server
+    restart: always
+    volumes: ['/opt/dns-proxy-server/conf:/app/conf', '/var/run/docker.sock:/var/run/docker.sock',
+      '/etc/resolv.conf:/etc/resolv.conf']
+  nginx-web-server:
+    hostname: nginx-web-server
+    image: yg397/openresty-thrift:xenial
+    ports: ['8080:8080']
+    restart: always
+    volumes: ['/home/ubuntu/uservices/DeathStarBench/mediaMicroservices/nginx-web-server/lua-scripts:/usr/local/openresty/nginx/lua-scripts',
+      '/home/ubuntu/uservices/DeathStarBench/mediaMicroservices/nginx-web-server/conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf',
+      '/home/ubuntu/uservices/DeathStarBench/mediaMicroservices/nginx-web-server/jaeger-config.json:/usr/local/openresty/nginx/jaeger-config.json',
+      '/home/ubuntu/uservices/DeathStarBench/mediaMicroservices/gen-lua:/gen-lua']
+version: '3'

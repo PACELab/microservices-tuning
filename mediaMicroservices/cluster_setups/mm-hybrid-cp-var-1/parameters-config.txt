@@ -1,0 +1,4 @@
+movie-review-service_io_threads,30
+movie-review-service_worker_threads,796
+review-storage-service_io_threads,16
+review-storage-service_worker_threads,24

@@ -1,0 +1,4 @@
+compose-post-service_io_threads,14.0
+compose-post-service_worker_threads,854.0
+url-shorten-service_io_threads,12.0
+url-shorten-service_worker_threads,575.0

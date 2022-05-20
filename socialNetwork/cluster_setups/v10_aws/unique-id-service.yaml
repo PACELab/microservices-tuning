@@ -1,0 +1,11 @@
+version: '3'
+services:
+  unique-id-service:
+    image: gaganso/service_base
+    hostname: unique-id-service
+    restart: always
+    entrypoint: UniqueIdService
+networks:
+  default:
+    external:
+      name: social-network-overlay

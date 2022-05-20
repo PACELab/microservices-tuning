@@ -1,0 +1,10 @@
+version: '3'
+services:
+  media-mongodb:
+    image: mongo
+    hostname: media-mongodb
+    restart: always
+networks:
+  default:
+    external:
+      name: social-network-overlay

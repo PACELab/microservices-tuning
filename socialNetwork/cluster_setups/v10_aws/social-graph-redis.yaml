@@ -1,0 +1,10 @@
+version: '3'
+services:
+  social-graph-redis:
+    image: redis
+    hostname: social-graph-redis
+    restart: always
+networks:
+  default:
+    external:
+      name: social-network-overlay

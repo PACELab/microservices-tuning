@@ -1,0 +1,4 @@
+service_host,docker-compose-service_host-12.yaml
+frontend_host,docker-compose-frontend_host-12.yaml
+monitor_host,docker-compose-monitor_host-12.yaml
+backend_host,docker-compose-backend_host-12.yaml

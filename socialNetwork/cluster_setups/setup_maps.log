@@ -1,0 +1,7 @@
+
+-------------------------------------------------------------------------------------------------------------
+Version         |                           Description
+-------------------------------------------------------------------------------------------------------------
+v1              |    Split uServices based on tiers -- frontend, services-layer, backend
+v2              |    Split uServices based on services -- frontend, (read related services + read backend), (write related services + write backend)
+v3              |    Split uServices based on services -- frontend, monitoring, (read related services + read backend), (write related services + write backend), 

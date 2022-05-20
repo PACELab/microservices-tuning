@@ -1,0 +1,18 @@
+version: '3'
+services:
+  nginx-thrift:
+    image: yg397/openresty-thrift:xenial
+    hostname: nginx-thrift
+    ports:
+    - 8080:8080
+    restart: always
+    volumes:
+    - /data/big_disk/projects/DeathStarBenchMirror/socialNetwork/nginx-web-server/lua-scripts:/usr/local/openresty/nginx/lua-scripts
+    - /data/big_disk/projects/DeathStarBenchMirror/socialNetwork/nginx-web-server/pages:/usr/local/openresty/nginx/pages
+    - /data/big_disk/projects/DeathStarBenchMirror/socialNetwork/nginx-web-server/conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+    - /data/big_disk/projects/DeathStarBenchMirror/socialNetwork/nginx-web-server/jaeger-config.json:/usr/local/openresty/nginx/jaeger-config.json
+    - /data/big_disk/projects/DeathStarBenchMirror/socialNetwork/gen-lua:/gen-lua
+networks:
+  default:
+    external:
+      name: social-network-overlay

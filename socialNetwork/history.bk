@@ -1,0 +1,160 @@
+    1  ls
+    2  vim install_script.sh
+    3  mv install_script.sh docker_install.sh
+    4  chmod 777 docker_install.sh 
+    5  ./docker_install.sh 
+    6  vim install_script.sh
+    7  vim docker_install.sh 
+    8  ./docker_install.sh 
+    9  vim docker_install.sh 
+   10  ./docker_install.sh 
+   11  git clone https://github.com/delimitrou/DeathStarBench.git
+   12  ls
+   13  vim docker_compose_install.sh
+   14  chmod 777 docker_compose_install.sh 
+   15  ./docker_compose_install.sh 
+   16  vim docker_compose_install.sh
+   17  ./docker_compose_install.sh 
+   18  ls
+   19  vim docker_install.sh 
+   20  vim docker_compose_install.sh 
+   21  ./docker_compose_install.sh 
+   22  sudo ./docker_compose_install.sh 
+   23  vim docker_compose_install.sh 
+   24  sudo ./docker_compose_install.sh 
+   25  vim docker_compose_install.sh 
+   26  sudo ./docker_compose_install.sh 
+   27  vim docker_compose_install.sh 
+   28  sudo ./docker_compose_install.sh 
+   29  ls
+   30  clear
+   31  vim docker_install.sh 
+   32  python3
+   33  vim requirements.txt
+   34  vim requirements_installer.sh
+   35  cat requirements.txt | xargs sudo apt-get -y install 
+   36  sudo apt-get update
+   37  cat requirements.txt | xargs sudo apt-get -y install 
+   38  luarocks install luasocket
+   39  cat requirements.txt | xargs sudo apt-get -y install 
+   40  vim requirements.txt 
+   41  cat requirements.txt | xargs echo
+   42  sudo apt install luarocks
+   43  vim requirements.txt 
+   44  luarocks install luasocket
+   45  sudo luarocks install luasocket
+   46  vim requirements.txt 
+   47  mv requirements.txt other_reqs.sh
+   48  chmod 777 other_reqs.sh 
+   49  ls
+   50  cd DeathStarBench/
+   51  docker-compose up -d
+   52  ls
+   53  cd socialNetwork/
+   54  docker-compose up -d
+   55  docker
+   56  clear
+   57  df -h
+   58  cd /mnt
+   59  ls
+   60  mkdir docker
+   61  sudo mkdir docker
+   62  ls /var/lib/docker/
+   63  sudo ls /var/lib/docker/
+   64  service docker stop
+   65  sudo  service docker stop
+   66  ps aux | grep docker
+   67  mv /var/lib/docker /mnt/pd0/docker
+   68  mv /var/lib/docker /mnt/docker
+   69  sudo mv /var/lib/docker /mnt/docker
+   70  sudo
+   71  sudo ln -s /mnt/docker /var/lib/docker
+   72  ls /var/lib/docker/
+   73  service docker start
+   74  sudo service docker start
+   75  ls
+   76  clear
+   77  cd
+   78  ls
+   79  cd DeathStarBench/
+   80  ls
+   81  cd socialNetwork/
+   82  ls
+   83  docker-compose up -d
+   84  ps aux | grep docker
+   85  kill -9 21971 
+   86  kill -9 21971
+   87  clear
+   88  docker-compose
+   89  docker-compose up 0h
+   90  docker-compose up -h
+   91  docker-compose up -d
+   92  sudo socker service start
+   93  sudo docker service start
+   94  sudo service docker start
+   95  sudo docker-compose up -d
+   96  ls
+   97  python3 scripts/init_social_graph.py
+   98  pip install aiohttp
+   99  sudo apt install python-pip
+  100  sudo pip install aiohttp
+  101  pip3 install aiohttp
+  102  sudo apt install python3-pip
+  103  pip3 install aiohttp
+  104  pip3 install asyncio
+  105  python3 scripts/init_social_graph.py
+  106  vim scripts/init_social_graph.py
+  107  python3 scripts/init_social_graph.py
+  108  ls
+  109  ifconfig
+  110  vim scripts/init_social_graph.py
+  111  python3 scripts/init_social_graph.py
+  112  ls
+  113  docker ps
+  114  sudo docker ps
+  115  sudo docker ps | grep ngnix
+  116  sudo docker ps | grep "ngnix"
+  117  docker ps
+  118  sudo docker ps
+  119  ifconfig
+  120  vim scripts/init_social_graph.py
+  121  python3 scripts/init_social_graph.py
+  122  vim scripts/init_social_graph.py
+  123  docker ps
+  124  sudo docker ps
+  125* sudo docker ps | grep "ngnix
+  126  docker socialnetwork_nginx-thrift_1 
+  127  clear
+  128  ls
+  129  docker socialnetwork_nginx-thrift_1 
+  130  docker ps
+  131  sudo docker ps
+  132  docker images
+  133  sudo docker images
+  134  sudo docker ps | grep yg397/openresty-thrift 
+  135  vim scripts/init_social_graph.py
+  136  python3 scripts/init_social_graph.py
+  137  vim scripts/init_social_graph.py
+  138  python3 scripts/init_social_graph.py
+  139  cd wrk2
+  140  make
+  141  sydi naje
+  142  sudo make
+  143  ls
+  144  sudo apt-get install libssl-dev
+  145  sudo make
+  146  sudo apt-get install libz-dev
+  147  sudo make
+  148  make
+  149  make clean
+  150  make
+  151  ls
+  152  ifconfig
+  153  curl http://localhost:16686
+  154  curl http://localhost:16686/wrk2-api/post/compose
+  155  clear
+  156  curl -v http://localhost:16686
+  157  ./wrk -D exp -t 2 -c 10 -d 5s -L -s ./scripts/social-network/compose-post.lua http://localhost:8080/wrk2-api/post/compose -R 100
+  158  ./wrk -D exp -t 2 -c 10 -d 5s -L -s ./scripts/social-network/compose-post.lua http://localhost:8082/wrk2-api/post/compose -R 100
+  159  history
+  160  history > history.bk

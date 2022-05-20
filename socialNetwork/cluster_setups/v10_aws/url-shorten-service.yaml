@@ -1,0 +1,11 @@
+version: '3'
+services:
+  url-shorten-service:
+    image: gaganso/service_base
+    hostname: url-shorten-service
+    restart: always
+    entrypoint: UrlShortenService
+networks:
+  default:
+    external:
+      name: social-network-overlay

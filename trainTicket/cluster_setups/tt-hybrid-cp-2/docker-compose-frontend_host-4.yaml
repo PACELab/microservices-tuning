@@ -1,0 +1,11 @@
+networks:
+  default:
+    external: {name: train-ticket-overlay-1}
+services:
+  ts-ui-dashboard:
+    hostname: ts-ui-dashboard
+    image: gaganso/ts-ui-dashboard-with-jaeger
+    ports: ['8080:8080']
+    restart: always
+    volumes: ['~/uservices/DeathStarBench/trainTicket/ts-ui-dashboard/nginx.temp:/usr/local/openresty/nginx/conf/nginx.conf']
+version: '3'

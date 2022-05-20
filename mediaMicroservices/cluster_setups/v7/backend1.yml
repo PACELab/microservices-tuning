@@ -1,0 +1,133 @@
+version: "3"
+services:
+
+  movie-id-mongodb:
+    image: mongo
+    hostname: movie-id-mongodb
+#    ports:
+#      - 27018:27017
+    restart: always
+
+  movie-id-memcached:
+    image: memcached
+    hostname: movie-id-memcached
+#    ports:
+#      - 11212:11211
+    restart: always
+
+  rating-redis:
+    image: redis
+    hostname: rating-redis
+#    ports:
+#      - 6382:6379
+    restart: always
+
+  user-mongodb:
+    image: mongo
+    hostname: user-mongodb
+#    ports:
+#      - 27019:27017
+    restart: always
+
+  user-memcached:
+    image: memcached
+    hostname: user-memcached
+#    ports:
+#      - 11213:11211
+    restart: always
+
+  compose-review-memcached:
+    image: memcached
+    hostname: compose-review-memcached
+#    ports:
+#      - 11214:11211
+    restart: always
+
+  review-storage-mongodb:
+    image: mongo
+    hostname: review-storage-mongodb
+#    ports:
+#      - 27020:27017
+    restart: always
+
+  review-storage-memcached:
+    image: memcached
+    hostname: review-storage-memcached
+#    ports:
+#      - 11215:11211
+    restart: always
+    
+  user-review-mongodb:
+    image: mongo
+    hostname: user-review-mongodb
+#    ports:
+#      - 27021:27017
+    restart: always    
+    
+  user-review-redis:
+    image: redis
+    hostname: user-review-redis
+#    ports:
+#      - 6381:6379
+    restart: always
+
+  movie-review-mongodb:
+    image: mongo
+    hostname: movie-review-mongodb
+    ports:
+      - 27022:27017
+    restart: always
+
+  movie-review-redis:
+    image: redis
+    hostname: movie-review-redis
+#    ports:
+#      - 6380:6379
+    restart: always
+
+  cast-info-mongodb:
+    image: mongo
+    hostname: cast-info-mongodb
+#    ports:
+#      - 27024:27017
+    restart: always
+
+  cast-info-memcached:
+    image: memcached
+    hostname: cast-info-memcached
+#    ports:
+#      - 11219:11211
+    restart: always
+
+  plot-mongodb:
+    image: mongo
+    hostname: plot-mongodb
+#    ports:
+#      - 27025:27017
+    restart: always
+
+  plot-memcached:
+    image: memcached
+    hostname: plot-memcached
+#    ports:
+#      - 11220:11211
+    restart: always
+
+  movie-info-mongodb:
+    image: mongo
+    hostname: movie-info-mongodb
+#    ports:
+#      - 27026:27017
+    restart: always
+
+  movie-info-memcached:
+    image: memcached
+    hostname: movie-info-memcached
+#    ports:
+#      - 11221:11211
+    restart: always
+
+networks:
+  default:
+    external:
+      name: media-overlay

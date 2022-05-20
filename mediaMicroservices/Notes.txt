@@ -1,0 +1,228 @@
+Command used for composing the reviews:
+./wrk -D exp -t 5 -c 100 -d 5s -L -s ./scripts/media-microservices/compose-review.lua http://localhost:8080/wrk2-api/review/compose -R 10
+
+
+For reading reviews:
+./wrk -D exp -t 5 -c 100 -d 5s -L -s ./scripts/media-microservices/read-review.lua http://localhost:8080/wrk2-api/review/read -R 10
+
+
+To view container logs
+sudo docker logs -f --tail 100 be9c4861809b
+
+
+
+
+
+#####################################################################################################################################
+
+Useful docker commands
+
+
+sudo docker-compose up -d
+-d for detach mode to run containers in the background
+sudo docker-compose down
+sudo docker container ls
+sudo docker node ls
+sudo docker image ls
+sudo service docker start
+
+
+To inspect a node
+sudo docker node inspect ht6qayg888m0i84wmx04hmnpc --pretty
+
+Service
+sudo docker service create --replicas 3 -p 80:80 --name serviceName imageName
+
+to create a service in all worker nodes docker service create --name node-exporter --mode global -p 9100:9100 prom/node-exporter  
+sudo docker service inspect --pretty helloworld
+sudo docker service rm serviceName
+sudo docker service ls
+sudo docker service ps serviceName //important
+sudo docker service scale serviceName=3
+
+sudo docker service update --image imagename:version web
+sudo docker service update --image nginx:1.14.0 serviceName
+sudo docker node update --availability drain worker1
+sudo docker swarm leave
+sudo docker system prune
+sudo systemctl start docker
+sudo service docker start
+
+
+
+docker service rm serviceName
+docker swarm leave : to leave the swarm
+docker-machine stop machineName : to stop the machine
+docker-machine rm machineName : to remove the machine
+
+
+To see cpu / memory 
+sudo docker container stats
+sudo docker system events
+
+
+orchestration
+All about swarm
+https://medium.com/@codingfriend/docker-swarm-cheatsheet-22665e3278b1
+https://medium.com/@soumyadipde/monitoring-in-docker-stacks-its-that-easy-with-prometheus-5d71c1042443
+
+
+
+
+
+
+
+
+
+
+#####################################################################################################################################
+
+
+
+About Logging:
+Logging  docker container logs --follow 3f840a82aabe
+docker container logs --tail 1 3f840a82aabe
+docker-compose logs
+docker service logs
+
+https://takacsmark.com/docker-logs/
+
+
+https://nickjanetakis.com/blog/docker-tip-60-what-really-happens-when-you-run-docker-compose-up
+
+
+https://stackoverflow.com/questions/42230536/docker-compose-up-times-out-with-unixhttpconnectionpool
+
+export DOCKER_CLIENT_TIMEOUT=120
+export COMPOSE_HTTP_TIMEOUT=120
+
+
+bugged with memory leaks and veth leaks  https://forums.docker.com/t/very-large-number-of-veth-interfaces/30597
+
+https://forums.docker.com/t/relationship-between-interface-vethxxxxx-and-container/12872/25
+
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nginx
+
+https://pythonspeed.com/articles/docker-connection-refused/
+
+
+
+
+#####################################################################################################################################
+
+
+
+Social Network microservice
+
+Final setup
+
+Setting up social network
+on personal laptop use 9000:localhost:17000
+on Controller ssh -i ./compass.key ubuntu@192.168.0.138 -L 17000:localhost:16686
+
+Manager
+sudo docker system prune -af
+sudo docker swarm init --advertise-addr 192.168.0.142
+sudo docker network create -d overlay snoverlaynetwork
+sudo docker stack deploy --compose-file=docker-compose.yml socialnetwork
+python3 scripts/init_social_graph.py
+
+Worker
+sudo docker system prune -af
+sudo docker swarm join --token SWMTKN-1-3ne6xhkf7rm4dkyokdazctmsnadzeij798hpjce9lagbtiparo-95pbilv8js53gjuvzbq5s4qmq 192.168.0.139:2377
+
+sudo docker stack rm socialnetwork
+
+to check which service is running where sudo docker node ps $(sudo docker node ls -q) --filter desired-state=Running | uniq
+
+
+
+
+v2
+to turn up sudo docker-compose up -d
+to turn down sudo docker-compose down
+Scale up particular service
+sudo docker-compose scale compose-post-service=2
+
+
+v3
+docker stack deploy --compose-file=docker-compose.yml couchbase
+docker service scale couchbase_db=2
+
+
+
+
+
+
+https://stackoverflow.com/questions/39844880/how-to-setup-multi-host-networking-with-docker-swarm-on-multiple-remote-machines
+
+https://github.com/docker/swarmkit/issues/1429
+
+
+
+sudo apt-get purge --auto-remove apparmor
+
+
+
+for NODE in $(docker node ls --format '{{.Hostname}}'); do echo -e "${NODE} - $(docker node inspect --format '{{.Status.Addr}}' "${NODE}")"; done
+
+sudo docker service ps socialnetwork_nginx-thrift --format "{{.Node}}" 2>&1 | head -n 1
+
+
+
+
+
+
+sudo docker swarm init --advertise-addr 192.168.0.142 > /home/ubuntu/dsb_scripts/init.out
+JOIN_WORKER_COMMAND=`sed -n '5p' < /home/ubuntu/dsb_scripts/init.out`
+
+
+
+DIAGNOSE:
+If load is not being balanced then there is a problem with snap Verify by running sudo docker service ps --no-trunc socialnetwork_user-mention-service
+
+sudo snap remove docker
+sudo rm -R /var/lib/docker
+sudo apt-get remove docker docker-engine docker.io
+
+
+sudo snap list
+snap remove docker
+
+sudo snap remove core hello  
+sudo snap install hello
+
+
+
+
+#####################################################################################################################################
+
+
+
+microsuite
+
+* OLDI applications — adopting m,icroservice architecture instead of monolithic architecture to improve on scalability. Interact via RPCs.
+* Monolithic have >100ms latencies SLO while microservices have single digit ms latencies as they are invoked serially.
+* sub-ms-scale latencies become significant in this regime.
+* Prior work studeid leaf serveres while mid-tier were also important.
+* Mid -tier magae both incoming nad outgoing traffic and face greater tail latencies optimizations.
+
+* Current Benschmark suites are unsuitable for characterizing microservices as they (1) include primarily leaf services, (2) use monolithic rather than microservice architectures, and (3) largely have request service times ≥ 100 ms. 
+* musuite - HDSearch, Router, Set Algebra, Recommend
+
+Findings  - that non-optimal OS scheduler decisions can degrade microservice tail latency by up to ∼ 87%. 
+
+μSuite as latency-critical services studied by prior works are unsuitable to characterize microservices 
+Closed-source, Too few latency-critical workloads, Not representative, Monolithic architectures, Target only leaves, Machine-learning based.
+
+The Coordinated Omission Problem
+* Load testing.
+* Monitoring code.
+* Coordinate omission makes what you think you are measuring response time when it’s really measures the service time component of latency.
+* The difference is immense. The coordinated omission problem makes something that is response time only measure service time, hiding the fact that things stalled.
+* Study latency where you want to be in production, not close to failure levels.
+http://highscalability.com/blog/2015/10/5/your-load-generator-is-probably-lying-to-you-take-the-red-pi.html
+https://medium.com/@siddontang/the-coordinated-omission-problem-in-the-benchmark-tools-5d9abef79279
+
+YCSB’s coordinated omission problem was fixed.
+How? http://psy-lob-saw.blogspot.com/2015/03/fixing-ycsb-coordinated-omission.html

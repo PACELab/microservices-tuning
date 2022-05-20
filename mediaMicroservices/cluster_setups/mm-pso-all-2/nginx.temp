@@ -1,0 +1,61 @@
+# This config was built from JSON using NGINX crossplane.
+# If you encounter any bugs please report them here:
+# https://github.com/nginxinc/crossplane/issues
+
+load_module modules/ngx_http_opentracing_module.so;
+events {
+    worker_connections 768;
+}
+worker_processes 39;
+thread_pool thread1 threads=43 max_queue=8283;
+http {
+    opentracing on;
+    opentracing_load_tracer /usr/local/lib/libjaegertracing_plugin.so /usr/local/openresty/nginx/jaeger-config.json;
+    include mime.types;
+    default_type application/octet-stream;
+    log_format main '$remote_addr - $remote_user [$time_local] "$request"' '$status $body_bytes_sent "$http_referer" ' '"$http_user_agent" "$http_x_forwarded_for"';
+    sendfile on;
+    tcp_nopush on;
+    tcp_nodelay on;
+    aio threads=thread1;
+    keepalive_timeout 120s;
+    keepalive_requests 100000;
+    resolver 127.0.0.11 ipv6=off;
+    lua_package_path '/usr/local/openresty/nginx/lua-scripts/?.lua;;';
+    server {
+        listen 8080 reuseport;
+        server_name localhost;
+        access_log off;
+        lua_need_request_body on;
+        location /wrk2-api/user/register {
+            content_by_lua '\n          local client = require "wrk2-api/user/register"\n          client.RegisterUser();\n      ';
+        }
+        location /wrk2-api/movie/register {
+            content_by_lua '\n          local client = require "wrk2-api/movie/register"\n          client.RegisterMovie();\n      ';
+        }
+        location /wrk2-api/review/compose {
+            content_by_lua '\n          local client = require "wrk2-api/review/compose"\n          client.ComposeReview();\n      ';
+        }
+        location /wrk2-api/review/read {
+            content_by_lua '\n          local client = require "wrk2-api/review/read"\n          client.ReadMovieReviews();\n      ';
+        }
+        location /wrk2-api/movie-info/write {
+            content_by_lua '\n          local client = require "wrk2-api/movie-info/write"\n          client.WriteMovieInfo();\n      ';
+        }
+        location /wrk2-api/movie-info/read {
+            content_by_lua '\n          local client = require "wrk2-api/movie-info/read"\n          client.ReadMovieInfo();\n      ';
+        }
+        location /wrk2-api/cast-info/write {
+            content_by_lua '\n          local client = require "wrk2-api/cast-info/write"\n          client.WriteCastInfo();\n      ';
+        }
+        location /wrk2-api/cast-info/read {
+            content_by_lua '\n          local client = require "wrk2-api/cast-info/read"\n          client.ReadCastInfo();\n      ';
+        }
+        location /wrk2-api/plot/write {
+            content_by_lua '\n          local client = require "wrk2-api/plot/write"\n          client.WritePlot();\n      ';
+        }
+        location /wrk2-api/plot/read {
+            content_by_lua '\n          local client = require "wrk2-api/plot/read"\n          client.ReadPlotInfo();\n      ';
+        }
+    }
+}

@@ -1,0 +1,9 @@
+write-home-timeline-service_worker_threads,21
+compose-post-service_io_threads,38
+compose-post-service_worker_threads,843
+user-timeline-service_io_threads,32
+user-timeline-service_worker_threads,773
+url-shorten-service_io_threads,30
+url-shorten-service_worker_threads,98
+text-service_io_threads,4
+text-service_worker_threads,914

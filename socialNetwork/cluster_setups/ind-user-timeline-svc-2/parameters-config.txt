@@ -1,0 +1,6 @@
+compose-post-service_io_threads,44.0
+compose-post-service_worker_threads,527.0
+user-timeline-service_io_threads,38.0
+user-timeline-service_worker_threads,912.0
+url-shorten-service_io_threads,9.0
+url-shorten-service_worker_threads,960.0
