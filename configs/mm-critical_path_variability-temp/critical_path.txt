@@ -1,0 +1,5 @@
+movie-review-service
+review-storage-service
+nginx-web-server
+review-storage-mongodb
+movie-review-mongodb

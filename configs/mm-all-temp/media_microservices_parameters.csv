@@ -1,0 +1,119 @@
+microservice,type,parameter,categorical,discrete,float,range,step,conditional,units,comments,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14
+nginx-web-server,frontend,worker_processes,,1.0,,1;48,2.0,,,,46,1,17,4,17,17,29,23,6,8,41,12,24,13,14
+nginx-web-server,frontend,worker_connections,,1.0,,512;2048,256.0,,,,641,1250,1452,1961,991,1407,1707,734,1899,1506,1167,1246,1023,901,830
+nginx-web-server,frontend,threads,,1.0,,1;48,2.0,,,,14,8,43,36,15,18,36,15,12,25,30,13,23,35,47
+nginx-web-server,frontend,max_queue,,1.0,,100;10000,,,,thread queue size,6065,795,7446,9571,211,6191,825,2417,7029,3829,4525,1289,3913,2834,7902
+cast-info-memcached,memcached,m,,1.0,,4000;20000,1000.0,,,maximum memory in megabytes only. 10% to 50% of the total RAm,6276,7952,4999,17246,8304,4909,17335,4617,4647,16676,5557,10825,7416,15859,10592
+cast-info-memcached,memcached,c,,1.0,,512;2048,512.0,,,max simultaneous connections. Should match the client pool size or slightly bigger,736,1974,1800,1852,553,1173,996,832,1028,1458,1983,1694,944,943,1309
+cast-info-memcached,memcached,R,,1.0,,1;100,20.0,,,client starvation,40,69,15,14,95,19,58,50,38,4,8,19,81,45,52
+cast-info-memcached,memcached,t,,1.0,,1;24,2.0,,,threads,4,4,9,3,17,18,11,8,4,5,10,19,6,15,11
+cast-info-memcached,memcached,f,,,1.0,1.01;3,0.25,,,chunk growth factor,2.3306152576157357,2.766501137491348,2.888664259891754,2.920649564378851,2.0909786314705125,2.384478730050845,1.1900529526715584,1.2546356796183415,1.6981545027846705,2.409112077765161,2.56889843876383,1.7807318213470007,1.9268952475358159,2.6483050424690453,2.205857445961394
+compose-review-memcached,memcached,m,,1.0,,4000;20000,1000.0,,,,14959,13321,14443,10175,9568,17252,4658,6695,13314,19667,19579,8668,5125,6799,14392
+compose-review-memcached,memcached,c,,1.0,,512;2048,512.0,,,,1212,748,1329,905,1209,707,1134,1170,1050,1339,1383,603,1031,846,1523
+compose-review-memcached,memcached,R,,1.0,,1;100,20.0,,,,39,50,53,9,9,39,39,2,95,80,21,73,22,6,28
+compose-review-memcached,memcached,t,,1.0,,1;24,2.0,,,,3,13,1,7,14,22,23,16,1,13,3,15,14,2,16
+compose-review-memcached,memcached,f,,,1.0,1.01;3,0.25,,,,1.536710480366187,2.0164510568556553,2.641102500399083,1.8179839858830595,1.1105322428487556,1.422928092488783,2.6103380424798206,1.0272192979268988,1.6345825661799331,2.1085656505459394,2.2442162125154512,2.3125007271394944,2.69781518327626,1.9969921997152738,1.9643880951594945
+movie-id-memcached,memcached,m,,1.0,,4000;20000,1000.0,,,,4428,8103,19717,15713,8527,14290,4049,18593,10043,4131,6101,16584,4660,14596,13686
+movie-id-memcached,memcached,c,,1.0,,512;2048,512.0,,,,1288,1707,1244,1109,1018,1100,1817,1321,1777,1641,1196,952,1053,1539,742
+movie-id-memcached,memcached,R,,1.0,,1;100,20.0,,,,40,35,1,47,91,53,76,69,7,32,18,72,89,8,11
+movie-id-memcached,memcached,t,,1.0,,1;24,2.0,,,,12,3,14,4,7,12,1,14,12,16,1,4,12,15,19
+movie-id-memcached,memcached,f,,,1.0,1.01;3,0.25,,,,1.9342284829380307,1.5167729899392421,1.297187419184049,1.0452616063546922,1.2880077483150996,1.3524936912395955,2.6975127526084073,2.009304749973471,1.0845293196087784,1.7338004427738687,1.6828023789101683,2.4571073518739044,1.4355010661580048,1.4248561681641365,1.762836580888951
+movie-info-memcached,memcached,m,,1.0,,4000;20000,1000.0,,,,12437,19066,4374,15873,12461,16698,10348,19290,6510,19062,13806,11379,19476,13515,13375
+movie-info-memcached,memcached,c,,1.0,,512;2048,512.0,,,,1180,830,783,1473,592,1487,1344,677,815,1386,653,1115,766,1029,1394
+movie-info-memcached,memcached,R,,1.0,,1;100,20.0,,,,15,11,49,62,90,24,30,83,13,79,19,48,49,6,31
+movie-info-memcached,memcached,t,,1.0,,1;24,2.0,,,,23,11,13,3,3,13,1,9,21,14,11,14,20,8,20
+movie-info-memcached,memcached,f,,,1.0,1.01;3,0.25,,,,2.9893110809231307,2.3004144911911553,2.9869818869484446,1.1493531954913347,2.222296871864085,1.8688999940582316,2.6549245770303918,1.6805997157745756,1.0668968000644858,1.9132108207217402,1.8593135479289375,1.719525974731594,1.2946891948504067,1.1676817613542043,1.766365832628002
+plot-memcached,memcached,m,,1.0,,4000;20000,1000.0,,,,9098,18750,4368,12482,4598,11458,12340,19878,16967,9532,16730,6643,9494,6395,19270
+plot-memcached,memcached,c,,1.0,,512;2048,512.0,,,,909,1963,1971,1183,1222,836,1483,719,1874,526,1120,938,1121,791,1466
+plot-memcached,memcached,R,,1.0,,1;100,20.0,,,,91,62,19,8,66,26,49,43,28,52,21,16,5,11,51
+plot-memcached,memcached,t,,1.0,,1;24,2.0,,,,5,14,6,11,11,17,8,7,3,19,4,23,3,12,15
+plot-memcached,memcached,f,,,1.0,1.01;3,0.25,,,,2.031151416347618,2.2023609364579984,2.3917031935582793,1.4456195846547768,1.8049238917564272,2.653512155423881,1.515433363868789,2.4201558565011814,2.3116157448978374,1.7439206526348534,2.618401659266268,2.301640011921866,1.2253388793097137,2.1786346380434565,1.9986621202493144
+review-storage-memcached,memcached,m,,1.0,,4000;20000,1000.0,,,,11895,15106,18821,7600,16293,11868,9137,12082,9807,11397,11917,14709,6880,11534,16850
+review-storage-memcached,memcached,c,,1.0,,512;2048,512.0,,,,1150,1415,971,1217,1394,1398,542,755,1040,1988,1257,824,702,1311,1371
+review-storage-memcached,memcached,R,,1.0,,1;100,20.0,,,,57,49,86,2,45,34,51,9,98,90,12,67,42,88,75
+review-storage-memcached,memcached,t,,1.0,,1;24,2.0,,,,4,8,12,19,1,20,20,1,11,15,7,19,23,4,12
+review-storage-memcached,memcached,f,,,1.0,1.01;3,0.25,,,,1.2907956584087255,2.827512700011087,2.9461421991731918,2.1270087096070434,1.0494099195749014,1.3554175064215588,2.1095317415240986,1.2872378032355691,1.014034772497826,2.4038746975049365,2.15886806388868,1.7277418463016727,2.9374833020654845,2.419697003378192,2.652398971483306
+user-memcached,memcached,m,,1.0,,4000;20000,1000.0,,,,9839,8881,7825,8830,7306,19691,7364,19573,8939,8708,9434,13336,9316,6528,16430
+user-memcached,memcached,c,,1.0,,512;2048,512.0,,,,628,844,1484,1612,512,1441,1841,1696,934,571,1713,1681,551,1236,1538
+user-memcached,memcached,R,,1.0,,1;100,20.0,,,,58,15,54,73,45,58,35,84,18,73,50,13,24,85,97
+user-memcached,memcached,t,,1.0,,1;24,2.0,,,,21,16,15,6,1,18,17,4,8,23,23,10,17,15,16
+user-memcached,memcached,f,,,1.0,1.01;3,0.25,,,,2.2408963032277445,2.4056960059784087,1.913952692619771,1.254259653337402,1.1785558930545215,2.7010401516848286,2.2191321109774034,2.1056926492326165,2.917048519799592,2.4002826064606912,2.1229641178249787,2.3122572053961097,2.960828654855322,1.176764657751785,1.6244351382733795
+cast-info-mongodb,mongo,wiredTigerCacheSizeGB,,,1.0,0.25;19.5,1.0,,,in GBs float,4.35124185071218,10.534838852911749,0.6330637564715621,18.398292943984096,2.380795188778263,14.920123484973322,16.496916681950726,4.365328853333755,12.57627993261351,15.559084392546923,8.102859988877974,13.719528771801517,14.500367061327424,10.020969868540428,17.199259601361906
+cast-info-mongodb,mongo,serviceExecutor,1.0,1.0,,synchronous;adaptive,,,,,synchronous,adaptive,adaptive,adaptive,adaptive,synchronous,synchronous,synchronous,synchronous,adaptive,synchronous,synchronous,adaptive,synchronous,synchronous
+cast-info-mongodb,mongo,wiredTigerCollectionBlockCompressor,1.0,1.0,,none;snappy;zlib;zstd,,,,,zstd,zstd,snappy,snappy,zlib,snappy,snappy,snappy,none,snappy,zstd,zlib,snappy,zlib,snappy
+cast-info-mongodb,mongo,wiredTigerConcurrentReadTransactions,,1.0,,32;256,32.0,,,,207,100,165,174,202,129,37,180,83,243,94,244,148,110,122
+cast-info-mongodb,mongo,wiredTigerConcurrentWriteTransactions,,1.0,,32;256,32.0,,,,80,254,95,123,241,189,215,37,53,119,83,254,38,251,181
+movie-id-mongodb,mongo,wiredTigerCacheSizeGB,,,1.0,0.25;19.5,1.0,,,,3.063557702405894,16.36775159167015,7.719503736568995,10.180968402890773,5.722705701351931,11.198499024030301,8.801724077844627,4.250511791616637,7.592484397856242,9.093240032781402,1.533788474152967,4.325021283101293,6.742171530946626,17.154273304316693,9.571213926281406
+movie-id-mongodb,mongo,serviceExecutor,1.0,1.0,,synchronous;adaptive,,,,,adaptive,adaptive,adaptive,synchronous,adaptive,adaptive,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,adaptive,adaptive,synchronous
+movie-id-mongodb,mongo,wiredTigerCollectionBlockCompressor,1.0,1.0,,none;snappy;zlib;zstd,,,,,zstd,zstd,snappy,zstd,none,snappy,snappy,none,zstd,zstd,snappy,none,snappy,zlib,none
+movie-id-mongodb,mongo,wiredTigerConcurrentReadTransactions,,1.0,,32;256,32.0,,,,226,248,207,240,169,160,105,246,74,33,115,61,50,205,214
+movie-id-mongodb,mongo,wiredTigerConcurrentWriteTransactions,,1.0,,32;256,32.0,,,,40,116,81,62,188,102,57,49,166,131,154,113,38,84,106
+movie-info-mongodb,mongo,wiredTigerCacheSizeGB,,,1.0,0.25;19.5,1.0,,,,0.44061904195947105,5.938205228889874,3.1007941409569457,6.923827459204317,10.220348916835844,16.883583526124486,4.527482785381238,18.929347165090963,13.107420759203237,14.238015610498477,2.565921433409473,10.526718202327956,16.98622141278297,13.810394538188646,8.43849920157046
+movie-info-mongodb,mongo,serviceExecutor,1.0,1.0,,synchronous;adaptive,,,,,synchronous,synchronous,adaptive,synchronous,synchronous,adaptive,synchronous,synchronous,adaptive,synchronous,synchronous,adaptive,adaptive,adaptive,synchronous
+movie-info-mongodb,mongo,wiredTigerCollectionBlockCompressor,1.0,1.0,,none;snappy;zlib;zstd,,,,,zstd,zstd,snappy,snappy,none,zlib,zstd,zstd,snappy,none,zstd,none,zlib,snappy,zlib
+movie-info-mongodb,mongo,wiredTigerConcurrentReadTransactions,,1.0,,32;256,32.0,,,,38,229,167,102,237,253,111,46,103,130,128,243,103,181,218
+movie-info-mongodb,mongo,wiredTigerConcurrentWriteTransactions,,1.0,,32;256,32.0,,,,221,166,69,158,220,109,199,99,203,249,148,86,61,121,198
+movie-review-mongodb,mongo,wiredTigerCacheSizeGB,,,1.0,0.25;19.5,1.0,,,,15.05062307667775,13.041234231688737,11.865598686202146,6.996615571408591,10.992767479832178,5.522951721929177,12.658805342044014,3.2584715066636596,16.505923417163338,4.141349332601725,6.043685967792587,16.141835120261206,2.145805062036416,3.9177530422240547,10.294993381163128
+movie-review-mongodb,mongo,serviceExecutor,1.0,1.0,,synchronous;adaptive,,,,,synchronous,adaptive,synchronous,synchronous,adaptive,adaptive,synchronous,synchronous,synchronous,synchronous,synchronous,adaptive,adaptive,adaptive,adaptive
+movie-review-mongodb,mongo,wiredTigerCollectionBlockCompressor,1.0,1.0,,none;snappy;zlib;zstd,,,,,snappy,none,snappy,none,zstd,zlib,snappy,snappy,zlib,snappy,zstd,snappy,zlib,snappy,snappy
+movie-review-mongodb,mongo,wiredTigerConcurrentReadTransactions,,1.0,,32;256,32.0,,,,65,237,200,122,204,214,195,66,159,217,118,123,178,249,254
+movie-review-mongodb,mongo,wiredTigerConcurrentWriteTransactions,,1.0,,32;256,32.0,,,,73,234,196,222,56,217,218,99,173,216,174,131,43,86,242
+plot-mongodb,mongo,wiredTigerCacheSizeGB,,,1.0,0.25;19.5,1.0,,,,4.695834645776672,5.126893443750295,12.137222155388905,7.147260905950953,0.4401630343810632,7.394636260224664,5.247241420613486,6.012606454723523,5.16697783018369,2.4307730013974336,6.682347288642241,4.7247871846782665,13.995820186391395,19.053385327220887,2.0362829281602766
+plot-mongodb,mongo,serviceExecutor,1.0,1.0,,synchronous;adaptive,,,,,synchronous,synchronous,adaptive,synchronous,adaptive,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,adaptive,synchronous,adaptive
+plot-mongodb,mongo,wiredTigerCollectionBlockCompressor,1.0,1.0,,none;snappy;zlib;zstd,,,,,zstd,zstd,snappy,zlib,zlib,zlib,zstd,none,snappy,none,snappy,none,none,snappy,none
+plot-mongodb,mongo,wiredTigerConcurrentReadTransactions,,1.0,,32;256,32.0,,,,174,104,77,79,71,243,181,240,225,225,33,44,39,44,115
+plot-mongodb,mongo,wiredTigerConcurrentWriteTransactions,,1.0,,32;256,32.0,,,,206,127,153,76,62,122,160,88,135,238,251,218,149,189,193
+review-storage-mongodb,mongo,wiredTigerCacheSizeGB,,,1.0,0.25;19.5,1.0,,,,16.799438541119876,19.208985907019102,4.521825307613143,9.97143605820499,19.422912552077765,2.949418752926164,1.746201026655328,19.148645692627774,15.539449249071192,11.414633202401356,2.1602813259367615,4.340070400706673,4.564871991776771,3.493813990995476,16.054898578482828
+review-storage-mongodb,mongo,serviceExecutor,1.0,1.0,,synchronous;adaptive,,,,,adaptive,adaptive,synchronous,synchronous,synchronous,synchronous,synchronous,adaptive,synchronous,adaptive,synchronous,adaptive,synchronous,synchronous,synchronous
+review-storage-mongodb,mongo,wiredTigerCollectionBlockCompressor,1.0,1.0,,none;snappy;zlib;zstd,,,,,none,zlib,snappy,zlib,snappy,zlib,snappy,zlib,zstd,none,none,zlib,zlib,zstd,none
+review-storage-mongodb,mongo,wiredTigerConcurrentReadTransactions,,1.0,,32;256,32.0,,,,231,66,133,156,74,122,120,167,248,253,225,81,138,57,61
+review-storage-mongodb,mongo,wiredTigerConcurrentWriteTransactions,,1.0,,32;256,32.0,,,,198,198,98,189,112,168,163,73,104,238,118,138,127,113,82
+user-mongodb,mongo,wiredTigerCacheSizeGB,,,1.0,0.25;19.5,1.0,,,,4.559867732474201,15.094923076315636,14.468467817334844,17.850032325134535,13.094869516404263,5.1481868552480305,7.320028383975749,5.872909589690108,15.037193827036514,12.13489083207178,8.138067409611265,15.317489428666171,16.708449341550402,18.63848102606881,11.279616614768013
+user-mongodb,mongo,serviceExecutor,1.0,1.0,,synchronous;adaptive,,,"10000, 7, 5, 10, 128",,adaptive,adaptive,synchronous,adaptive,adaptive,adaptive,synchronous,synchronous,synchronous,adaptive,adaptive,synchronous,synchronous,adaptive,adaptive
+user-mongodb,mongo,wiredTigerCollectionBlockCompressor,1.0,1.0,,none;snappy;zlib;zstd,,,,,zstd,snappy,zstd,none,none,snappy,zlib,zstd,none,zstd,zlib,zlib,zstd,zstd,snappy
+user-mongodb,mongo,wiredTigerConcurrentReadTransactions,,1.0,,32;256,32.0,,,,60,143,137,235,139,175,222,205,159,167,213,201,217,173,108
+user-mongodb,mongo,wiredTigerConcurrentWriteTransactions,,1.0,,32;256,32.0,,,,213,81,165,149,51,115,125,171,53,215,86,210,229,148,82
+user-review-mongodb,mongo,wiredTigerCacheSizeGB,,,1.0,0.25;19.5,1.0,,,,5.318894463966258,6.108397575905891,16.67103595493972,12.12412482386856,2.163921419125758,18.55043429415631,15.462292407515559,14.976540951927031,3.4891801119636447,1.8889248728095036,2.287939973901394,13.757911113574137,17.492654376264085,10.108727938602472,10.497954548140687
+user-review-mongodb,mongo,serviceExecutor,1.0,1.0,,synchronous;adaptive,,,,,adaptive,adaptive,adaptive,synchronous,adaptive,adaptive,synchronous,adaptive,synchronous,synchronous,synchronous,synchronous,adaptive,synchronous,adaptive
+user-review-mongodb,mongo,wiredTigerCollectionBlockCompressor,1.0,1.0,,none;snappy;zlib;zstd,,,,,zstd,snappy,snappy,zstd,none,zlib,snappy,zlib,none,none,snappy,zlib,zstd,snappy,none
+user-review-mongodb,mongo,wiredTigerConcurrentReadTransactions,,1.0,,32;256,32.0,,,,134,109,234,237,172,177,137,242,156,77,165,177,120,132,39
+user-review-mongodb,mongo,wiredTigerConcurrentWriteTransactions,,1.0,,32;256,32.0,,,,244,165,184,53,147,205,166,143,249,102,66,245,140,64,34
+movie-review-redis,redis,maxmemory,,1.0,,10000;20000,1000.0,,,"add ""mb""",15133,17932,14219,14916,19291,12884,11675,11709,11412,17271,18692,14164,16419,13782,15896
+movie-review-redis,redis,maxmemory-policy,1.0,1.0,,volatile-lru;allkeys-lru;volatile-lfu;allkeys-lfu;volatile-random;allkeys-random;volatile-ttl;noeviction,,,,,volatile-random,allkeys-lru,volatile-lfu,allkeys-random,volatile-lfu,allkeys-lru,volatile-ttl,volatile-ttl,noeviction,volatile-lfu,volatile-lfu,volatile-lfu,allkeys-random,allkeys-lru,allkeys-lru
+movie-review-redis,redis,maxmemory-samples,,1.0,,3;10,1.0,,,,7,8,3,7,7,4,6,9,4,9,5,7,7,3,6
+movie-review-redis,redis,hz,,1.0,,1;100,10.0,,,,90,94,92,30,2,46,20,77,40,77,43,55,39,5,58
+movie-review-redis,redis,zset-max-ziplist-entries,,1.0,,64;512,64.0,,,,88,416,405,126,396,491,277,342,138,395,501,361,451,412,97
+rating-redis,redis,maxmemory,,1.0,,10000;20000,1000.0,,,"add ""mb""",12976,11563,11734,15919,12113,19318,18697,18838,19171,19259,14576,14816,10349,15510,13321
+rating-redis,redis,maxmemory-policy,1.0,1.0,,volatile-lru;allkeys-lru;volatile-lfu;allkeys-lfu;volatile-random;allkeys-random;volatile-ttl;noeviction,,,,,volatile-random,volatile-lru,volatile-ttl,volatile-random,volatile-random,allkeys-lfu,allkeys-random,volatile-lru,allkeys-lru,volatile-random,allkeys-lru,volatile-lru,volatile-ttl,allkeys-lru,allkeys-lru
+rating-redis,redis,maxmemory-samples,,1.0,,3;10,1.0,,,,6,5,9,6,3,6,7,9,4,6,7,7,5,8,9
+rating-redis,redis,hz,,1.0,,1;100,10.0,,,,79,57,2,46,58,66,50,59,59,24,4,29,8,65,46
+rating-redis,redis,zset-max-ziplist-entries,,1.0,,64;512,64.0,,,,72,332,133,383,169,382,213,238,386,127,251,190,361,431,354
+user-review-redis,redis,maxmemory,,1.0,,10000;20000,1000.0,,,"add ""mb""",10958,19152,10298,14882,13565,10608,19073,18282,13465,14801,13126,19686,18955,12736,19774
+user-review-redis,redis,maxmemory-policy,1.0,1.0,,volatile-lru;allkeys-lru;volatile-lfu;allkeys-lfu;volatile-random;allkeys-random;volatile-ttl;noeviction,,,,,volatile-lfu,allkeys-random,allkeys-lfu,noeviction,allkeys-lru,allkeys-random,volatile-lfu,allkeys-lru,noeviction,allkeys-lru,volatile-lru,noeviction,volatile-ttl,allkeys-lru,allkeys-lfu
+user-review-redis,redis,maxmemory-samples,,1.0,,3;10,1.0,,,,9,6,4,9,9,8,7,7,8,8,3,9,7,7,6
+user-review-redis,redis,hz,,1.0,,1;100,10.0,,,,61,39,32,86,25,60,60,45,15,34,94,36,54,3,87
+user-review-redis,redis,zset-max-ziplist-entries,,1.0,,64;512,64.0,,,,377,427,262,450,206,70,449,252,369,216,159,134,153,83,491
+cast-info-service,service,cast-info-service_io_threads,,1.0,,1;48,4.0,,,,36,37,40,17,36,9,42,15,42,12,16,24,33,39,12
+cast-info-service,service,cast-info-service_worker_threads,,1.0,,24; 960,48.0,,,,596,945,155,602,125,738,888,563,938,629,801,667,56,351,840
+compose-review-service,service,compose-review-service_io_threads,,1.0,,1;48,4.0,,,,20,10,22,8,43,45,37,44,10,27,37,10,34,22,7
+compose-review-service,service,compose-review-service_worker_threads,,1.0,,24; 960,48.0,,,,877,935,758,811,866,459,575,249,912,424,455,592,358,739,618
+movie-id-service,service,movie-id-service_io_threads,,1.0,,1;48,4.0,,,,26,46,44,13,40,15,25,29,2,33,25,44,43,42,47
+movie-id-service,service,movie-id-service_worker_threads,,1.0,,24; 960,48.0,,,,160,266,913,749,298,378,40,758,80,322,487,685,817,870,558
+movie-info-service,service,movie-info-service_io_threads,,1.0,,1;48,4.0,,,,32,3,33,12,22,31,7,31,2,34,47,35,13,32,30
+movie-info-service,service,movie-info-service_worker_threads,,1.0,,24; 960,48.0,,,,846,954,763,136,123,539,879,739,625,927,749,750,243,916,321
+movie-review-service,service,movie-review-service_io_threads,,1.0,,1;48,4.0,,,,16,30,9,39,17,41,2,4,41,25,30,14,41,25,32
+movie-review-service,service,movie-review-service_worker_threads,,1.0,,24; 960,48.0,,,,74,533,728,25,106,489,69,766,315,845,795,725,720,490,467
+plot-service,service,plot-service_io_threads,,1.0,,1;48,4.0,,,,46,39,45,42,30,13,36,44,8,38,42,25,29,43,38
+plot-service,service,plot-service_worker_threads,,1.0,,24; 960,48.0,,,,195,558,79,812,161,790,898,105,493,594,567,439,518,454,202
+rating-service,service,rating-service_io_threads,,1.0,,1;48,4.0,,,,5,22,9,36,13,2,28,10,7,5,19,1,23,19,5
+rating-service,service,rating-service_worker_threads,,1.0,,24; 960,48.0,,,,539,918,717,291,787,682,200,85,682,950,841,694,467,476,958
+review-storage-service,service,review-storage-service_io_threads,,1.0,,1;48,4.0,,,,34,18,2,34,9,20,9,27,33,13,21,38,6,5,29
+review-storage-service,service,review-storage-service_worker_threads,,1.0,,24; 960,48.0,,,,335,317,367,683,273,244,120,476,878,951,877,178,311,800,220
+text-service,service,text-service_io_threads,,1.0,,1;48,4.0,,,,46,15,3,13,3,11,23,10,27,6,33,4,29,18,43
+text-service,service,text-service_worker_threads,,1.0,,24; 960,48.0,,,,856,267,600,731,323,923,764,336,154,284,460,553,60,319,557
+unique-id-service,service,unique-id-service_io_threads,,1.0,,1;48,4.0,,,,9,36,9,38,34,47,18,6,41,1,26,8,25,45,24
+unique-id-service,service,unique-id-service_worker_threads,,1.0,,24; 960,48.0,,,,749,509,800,250,371,322,566,605,117,87,850,375,782,785,904
+user-review-service,service,user-review-service_io_threads,,1.0,,1;48,4.0,,,,11,26,42,18,30,42,42,20,11,8,16,21,3,12,45
+user-review-service,service,user-review-service_worker_threads,,1.0,,24; 960,48.0,,,,229,654,612,449,546,605,171,249,468,82,560,858,424,600,706
+user-service,service,user-service_io_threads,,1.0,,1;48,4.0,,,,19,10,23,27,43,25,32,31,41,5,21,18,17,45,41
+user-service,service,user-service_worker_threads,,1.0,,24; 960,48.0,,,,607,520,576,684,581,122,763,803,935,449,895,178,68,113,483

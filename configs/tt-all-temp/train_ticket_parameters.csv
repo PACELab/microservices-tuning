@@ -1,0 +1,131 @@
+microservice,type,parameter,categorical,discrete,float,range,step,conditional,units,comments
+ts-ui-dashboard,frontend,worker_processes,,1,,1;24,1,,,
+ts-ui-dashboard,frontend,worker_connections,,1,,512;2048,256,,,
+ts-ui-dashboard,frontend,threads,,1,,1;24,1,,,
+ts-ui-dashboard,frontend,max_queue,,1,,100;10000,,,,thread queue size
+ts-ui-dashboard,frontend,tcp_nodelay,1,1,,on;off,,,,
+ts-consign-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-consign-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-consign-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-consign-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-consign-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-account-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-account-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-account-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-account-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-account-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-food-map-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-food-map-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-food-map-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-food-map-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-food-map-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-config-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-config-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-config-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-config-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-config-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-security-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-security-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-security-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-security-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-security-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-route-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-route-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-route-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-route-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-route-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-order-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-order-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-order-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-order-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-order-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-contacts-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-contacts-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-contacts-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-contacts-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-contacts-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-station-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-station-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-station-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-station-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-station-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-payment-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-payment-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-payment-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-payment-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-payment-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-user-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-user-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-user-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-user-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-user-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-ticket-office-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-ticket-office-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-ticket-office-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-ticket-office-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-ticket-office-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-train-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-train-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-train-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-train-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-train-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-inside-payment-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-inside-payment-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-inside-payment-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-inside-payment-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-inside-payment-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-consign-price-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-consign-price-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-consign-price-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-consign-price-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-consign-price-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-price-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-price-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-price-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-price-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-price-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-assurance-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-assurance-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-assurance-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-assurance-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-assurance-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-auth-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-auth-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-auth-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-auth-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-auth-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-travel-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-travel-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-travel-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-travel-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-travel-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-food-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-food-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-food-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-food-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-food-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-rebook-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-rebook-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-rebook-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-rebook-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-rebook-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-travel2-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-travel2-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-travel2-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-travel2-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-travel2-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-order-other-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-order-other-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-order-other-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-order-other-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-order-other-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-news-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-news-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-news-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-news-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-news-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+redis,redis,maxmemory,,1,,10000;20000,1000,,,"add ""mb"""
+redis,redis,maxmemory-policy,1,1,,volatile-lru;allkeys-lru;volatile-lfu;allkeys-lfu;volatile-random;allkeys-random;volatile-ttl;noeviction,,,,
+redis,redis,maxmemory-samples,,1,,3;10,1,,,
+redis,redis,hz,,1,,1;100,10,,,
+redis,redis,zset-max-ziplist-entries,,1,,64;512,64,,,

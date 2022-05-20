@@ -1,0 +1,12 @@
+nginx-thrift
+compose-post-service
+url-shorten-service
+text-service
+user-timeline-service
+write-home-timeline-service
+home-timeline-redis
+social-graph-redis
+compose-post-redis
+post-storage-mongodb
+user-timeline-mongodb
+post-storage-memcached

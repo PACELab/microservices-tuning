@@ -1,0 +1,13 @@
+nginx-web-server
+review-storage-memcached
+movie-review-mongodb
+review-storage-mongodb
+movie-review-redis
+compose-review-service
+movie-review-service
+plot-service
+user-review-service
+unique-id-service
+review-storage-service
+text-service
+movie-id-service

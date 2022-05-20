@@ -1,0 +1,5 @@
+nginx-thrift
+compose-post-service
+post-storage-mongodb
+user-timeline-mongodb
+post-storage-memcached

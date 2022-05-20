@@ -1,0 +1,9 @@
+nginx-thrift
+post-storage-service
+compose-post-service
+user-timeline-service
+user-mention-service
+home-timeline-redis
+user-timeline-redis
+post-storage-mongodb
+post-storage-memcached

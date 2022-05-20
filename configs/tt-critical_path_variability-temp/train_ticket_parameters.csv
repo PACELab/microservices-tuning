@@ -1,0 +1,26 @@
+microservice,type,parameter,categorical,discrete,float,range,step,conditional,units,comments
+ts-contacts-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-contacts-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-contacts-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-contacts-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-contacts-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-order-other-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-order-other-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-order-other-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-order-other-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-order-other-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-order-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-order-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-order-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-order-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-order-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-security-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-security-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-security-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-security-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-security-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
+ts-travel2-mongo,mongo,wiredTigerCacheSizeGB,,,1,0.25;19.5,1,,,in GBs float
+ts-travel2-mongo,mongo,serviceExecutor,1,1,,synchronous;adaptive,,,,
+ts-travel2-mongo,mongo,wiredTigerCollectionBlockCompressor,1,1,,none;snappy;zlib;zstd,,,,
+ts-travel2-mongo,mongo,wiredTigerConcurrentReadTransactions,,1,,32;256,32,,,
+ts-travel2-mongo,mongo,wiredTigerConcurrentWriteTransactions,,1,,32;256,32,,,
