@@ -15,32 +15,15 @@ import stats
 import config_to_docker_compose
 import deploy_application
 import generate_commands
-import online_config_updater
 
 from hyperopt import hp
 from skopt.space import Integer, Real, Categorical
 import nevergrad as ng
 
 
-def run_online_config(result_folder, app_config_dir, app_config_iteration, cluster_config_dir, version, app, client, rps_list, iterations, cluster_number, collect_jaeger=False, online=False):
-    """
-    Returns the objective value for the current time window.
-    """
 
 
-def run_workload(duration):
-    cmd = "./wrk2online/wrk -t 1 -c 4 -d 5400 -p 300 -L -s ./wrk2/scripts/social-network/compose-post.lua http://130.245.127.209:8080/wrk2-api//post/compose -R 150"
-    p = Popen(cmd, stdout=PIPE, bufsize=1, universal_newlines=True, shell=True)
-    i = 5
-    while True:
-        line = p.stdout.readline()
-        if "0.950000" in line:
-            reward = line.split()[0]
-            with open(f"./{i}.latency", "w") as f:
-                f.write(reward)
-            i += 5
-
-def run_config(result_folder, app_config_dir, app_config_iteration, cluster_config_dir, version, app, client, rps_list, iterations, cluster_number, collect_jaeger=False, online=False):
+def run_config(result_folder, app_config_dir, app_config_iteration, cluster_config_dir, version, app, client, rps_list, iterations, cluster_number, collect_jaeger=False, ):
     """
     Runs each experiment 'iter' number of times at requests per second equal to each element in 'rps'
     Returns a csv file with statistics averaged across different iterations.
@@ -144,50 +127,6 @@ def clean_config(config):
             config[i] = int(config[i])
     return config
 
-def online_apply_config(parameters_csv, config_template, current_config_index, config, app_config_dir, app):
-    """
-    """
-    app_source_map = {"SN": "socialNetwork", "MM": "mediaMicroservices",
-                      "HR": "hotelReservation", "TT": "trainTicket"}
-    app_destination_map = {"SN": "social-network-microservices",
-                           "MM": "media_microservices", "HR": "hotelReservation", "TT": "trainTicket"}
-
-    try:
-        critical_path_filename = app_config_dir + "/critical_path.txt"
-        with open(critical_path_filename) as f:
-            critical_path = f.read().splitlines()
-    except Exception as e:
-        print("Failed to read the critical path file %s" % e)
-        sys.exit()
-    parameters_df = pd.read_csv(parameters_csv)
-    config_template_df = pd.read_csv(config_template)
-
-    # config is chosen by an optimization module. Types have to be converted to the expected form
-    config = clean_config(config)
-    # Each column corresponds to one set of configuration
-    parameters_df[current_config_index] = pd.Series(config, dtype=str)
-    for index, row in config_template_df.iterrows():
-        if row["microservice"] in critical_path:
-            current_microservice_df = parameters_df[parameters_df.microservice ==
-                                                    row.microservice]
-            # sorry, this is too messy. But the goal is to get the formats shown in the method doc string
-            if row["type"] == "mongo":
-                pass
-            else:
-                # map the parameters config file in the volumes. The file is not present by default. So, the default
-                # values will be used.
-                if row["type"] == "service":
-                    row["volumes"] = "~/uservices/DeathStarBench/%s/config/parameters-config.txt:/%s/config/parameters-config.txt" % (
-                        app_source_map[app], app_destination_map[app])
-                param_value = ["%s%s%s%s%s" % (current_helper_dict["param_prefix"], param, current_helper_dict["param_value_separator"], value, current_helper_dict["value_suffix"].get(
-                    param, "")) for param, value in zip(current_microservice_df.parameter.values, current_microservice_df[current_config_index].values)]
-                row["command"] = current_helper_dict["param_separator"].join(
-                    param_value)
-            config_template_df.loc[index, "command"] = row["command"]
-    config_template_df.to_csv(
-        app_config_dir+"/"+str(current_config_index)+"_cluster.csv")
-    # Rewrite the new dataframe with an extra config column
-    parameters_df.to_csv(parameters_csv, index=False)
 
 def write_app_config_csv(parameters_csv, config_template, current_config_index, config, app_config_dir, app):
     """
@@ -424,16 +363,14 @@ def ng_domain_space(version, app):
     return [space, paramOrder, instrum]
 
 
-def get_objective_value(version, config_iteration, rps, experiment_iteration, metric=95, online=False):
+def get_objective_value(version, config_iteration, rps, experiment_iteration, metric=95, ):
     result_folder = "./results/"
-    if online:
-        pass
-    else:
-        experiment_folder = result_folder + version + \
+    
+    experiment_folder = result_folder + version + \
             "/v_%s_%d_rps%s/i1/" % (version, config_iteration, rps)
-        result = subprocess.run(" cat %s/*_latencies.txt | datamash perc:%d 1 > %s/objective_value" %
+    result = subprocess.run(" cat %s/*_latencies.txt | datamash perc:%d 1 > %s/objective_value" %
                                 (experiment_folder, metric, experiment_folder), stdout=subprocess.PIPE, shell=True)
-        result = subprocess.run(" cat %s/*_latencies.txt | datamash perc:%d 1" %
+    result = subprocess.run(" cat %s/*_latencies.txt | datamash perc:%d 1" %
                             (experiment_folder, metric), stdout=subprocess.PIPE, shell=True)
     try:
         # microseconds to milliseconds
@@ -502,27 +439,6 @@ def process_init_point(parameters_csv_file, config_values, dds=False):
 
     return [x, y]
 
-def online_optimizer_helper(args, sequence_number, current_model_iteration, config):
-    app_file_suffix = {"SN": "social_networking", "MM": "media_microservices",
-                       "HR": "hotel_reservation", "TT": "train_ticket"}
-    app_folder_dict = {"SN": "socialNetwork", "MM": "mediaMicroservices",
-                       "HR": "hotelReservation", "TT": "trainTicket"}
-    version = args.main_version + "-%d" % sequence_number
-    app_config_dir = os.path.join(args.config_folder, version)
-
-    parameter_csv_file = app_file_suffix[args.app] + "_parameters.csv"
-    configuration_csv_file = app_file_suffix[args.app] + "_config.csv"
-    result_folder = "./results"
-
-    # list of parameters, their ranges, etc.
-    parameter_csv_path = os.path.join(app_config_dir, parameter_csv_file)
-    # a template of the app deployment config
-    configuration_csv_path = os.path.join(
-        app_config_dir, configuration_csv_file)
-    cluster_config_dir = "../DeathStarBench/%s/cluster_setups" % (
-        app_folder_dict[args.app])    
-    write_app_config_csv(parameter_csv_path, configuration_csv_path,
-                         current_model_iteration, config, app_config_dir, args.app) 
 
 def optimizer_helper(args, sequence_number, current_model_iteration, config):
     app_file_suffix = {"SN": "social_networking", "MM": "media_microservices",

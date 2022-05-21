@@ -12,12 +12,11 @@ import helper
 
 class BayesianOptimization:
     # Initialize all the private variables.
-    def __init__(self, args, sequence_number, online=False, current_model_iteration=-1):
+    def __init__(self, args, sequence_number,  current_model_iteration=-1):
         self.args = args
         self.sequence_number = sequence_number
         # index of the current configuration. -1 before the method starts.
         self.current_model_iteration = current_model_iteration
-        self.online = online
         self.current_sequence_folder = self.args.main_version + "-%d" % sequence_number
         # domain space for BO using skopt library. verison and app code are the input
         self.domain_space = helper.skopt_space(
@@ -57,11 +56,7 @@ class BayesianOptimization:
             # a new config has been created by the optimization method
             self.current_model_iteration += 1
 
-            if self.online:
-                objective_function_value = helper.online_optimizer_helper(
-                    self.args, self.sequence_number, self.current_model_iteration, config)
-            else:
-                objective_function_value = helper.optimizer_helper(
+            objective_function_value = helper.optimizer_helper(
                     self.args, self.sequence_number, self.current_model_iteration, config)
             # we can take a weighted mixture or some other combination of metrics of different rps. Fow now, it will be only one RPS. So the first element in the rps_list
             #objective_function_value = test(config)

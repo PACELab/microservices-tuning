@@ -34,21 +34,6 @@ def generic_method(approach_instance, parameter_csv_path, configuration_csv_path
         approach_instance.analysis(objective_function_value)
     print("Execution per iteration %f" % (total_time/number_iterations))
 
-def online_generic_method(approach_instance, parameter_csv_path, configuration_csv_path, app_config_dir, app, result_folder, cluster_config_dir, client, rps_list, iterations, cluster_number):
-    total_time = 0
-    number_iterations = 0
-    while(not approach_instance.stop_config_generation("dummy")):
-        
-        start = timer()
-        config = approach_instance.next_config()
-        total_time += timer() - start
-        number_iterations += 1
-        helper.write_app_config_csv(parameter_csv_path, configuration_csv_path,
-                                    approach_instance.current_config_index, config, app_config_dir, app)
-        objective_function_value = helper.run_config(result_folder, app_config_dir, approach_instance.current_config_index,
-                                                     cluster_config_dir, version, app, client, rps_list, iterations, cluster_number)
-        approach_instance.analysis(objective_function_value)
-    print("Execution per iteration %f" % (total_time/number_iterations))
 
 def create_config_directory(config_dir, app, app_config_dir, dim_red):
     template_dict = {"SN": "sn-%s-temp", "HR": "hr-%s-temp",
@@ -86,38 +71,16 @@ def argument_parser():
                         help="The dimensionality reduction method used", default="critical_path")
     parser.add_argument(
         "--acq_func", "-a", help="The acquisition function to be used with Bayesian methods", default="EI")
-    parser.add_argument("--experiment_duration", "-ed",
-                        help="The duration of the online experiment in minutes", default="60")
     parser.add_argument("--warmup_duration", "-wd",
                         help="The duration of the warump in minutes", default="30")
     parser.add_argument("--init", action="store_true",
                         help="Initialize the algorithm with user supplied points instead of library generated random samples.")
     parser.add_argument("--test", action="store_true",
                         help="Temporary flags that is used to test a feature conditionally.")
-    parser.add_argument("--online", action="store_true",
-                        help="If passed, the experiment is run online")
     parser.add_argument("--monitoring_interval",
                         help="The interval at which the config is changed", default="3")
     return parser.parse_args()
 
-
-def online_deploy_app(args, result_folder, app_config_dir, app_config_iteration, cluster_config_dir, version):
-    """
-    """
-    duration = 5400
-    config_to_docker_compose.create_docker_compose_files(app_config_dir+"/"+str(
-        app_config_iteration)+"_cluster.csv", cluster_config_dir, version, args.app, args.client, app_config_iteration, args.cluster_number)
-    host_mapping = {}
-    iterations = float(
-        args.experiment_duration)//float(args.monitoring_interval)
-
-    with open(cluster_config_dir+"/" + version + "/host_roles.pkl", "rb") as host_roles_f:
-        host_mapping = pickle.load(host_roles_f)
-    helper.clean_and_deploy_app(cluster_config_dir, version, args.app,
-                                args.cluster_number, host_mapping)
-    x = threading.Thread(target = helper.run_workload, args=(duration,))
-    x.start()
-    os.sleep("sleep 1800")
 
 
 if __name__ == "__main__":
@@ -145,19 +108,8 @@ if __name__ == "__main__":
         # a template of the app deployment config
         configuration_csv_path = os.path.join(
             app_config_dir, configuration_csv_file)
-        if args.online:
-            online_deploy_app(args, result_folder, app_config_dir,
-                              0, cluster_config_dir, version)
 
-            if args.approach == "default":
-                helper.run_online_config(result_folder, app_config_dir, 0, cluster_config_dir, version, args.app, args.client, args.rps_list,
-                              args.experiment_iterations, args.cluster_number, collect_jaeger=True)
-            elif args.approach.startswith("bayesopt"):
-                approach_instance = bayesopt.BayesianOptimization(
-                    args, sequence_number, online=True)
-                approach_instance.optimize()
-
-        elif args.approach == "default":
+        if args.approach == "default":
             helper.run_config(result_folder, app_config_dir, 0, cluster_config_dir, version, args.app, args.client, args.rps_list,
                               args.experiment_iterations, args.cluster_number, collect_jaeger=True)  # run the config without any changes.
 
