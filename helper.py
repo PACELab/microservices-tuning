@@ -79,14 +79,15 @@ def run_config(result_folder, app_config_dir, app_config_iteration, cluster_conf
 
 
 def init_train_ticket():
-    os.system("./wrk2/wrk -t 1 -c 1 -d 2 -R 1 -L -s ./wrk2/scripts/train-ticket/auth.lua http://130.245.127.237:8080")
+    frontend_ip = "x.x.x.x"
+    os.system("./wrk2/wrk -t 1 -c 1 -d 2 -R 1 -L -s ./wrk2/scripts/train-ticket/auth.lua http://%s:8080"%frontend_ip)
     with open("./admin_token.txt") as f:
         token = f.read()
         print(token)
-    print("./wrk2/wrk -t 1 -c 1 -d 20 -R 3 -L -s ./wrk2/scripts/train-ticket/trains.lua http://130.245.127.237:8080 %s 100" % (token))
-    os.system("./wrk2/wrk -t 1 -c 1 -d 20 -R 3 -L -s ./wrk2/scripts/train-ticket/trains.lua http://130.245.127.237:8080 %s 100" % (token))
-    os.system("./wrk2/wrk -t 1 -c 1 -d 20 -R 3 -L -s ./wrk2/scripts/train-ticket/routes.lua http://130.245.127.237:8080 %s 100" % (token))
-    os.system("./wrk2/wrk -t 1 -c 1 -d 20 -R 3 -L -s ./wrk2/scripts/train-ticket/travel.lua http://130.245.127.237:8080 %s 100" % (token))
+    print("./wrk2/wrk -t 1 -c 1 -d 20 -R 3 -L -s ./wrk2/scripts/train-ticket/trains.lua http://%s:8080 %s 100" % (frontend_ip, token))
+    os.system("./wrk2/wrk -t 1 -c 1 -d 20 -R 3 -L -s ./wrk2/scripts/train-ticket/trains.lua http://%s:8080 %s 100" % (frontend_ip,token))
+    os.system("./wrk2/wrk -t 1 -c 1 -d 20 -R 3 -L -s ./wrk2/scripts/train-ticket/routes.lua http://%s:8080 %s 100" % (frontend_ip,token))
+    os.system("./wrk2/wrk -t 1 -c 1 -d 20 -R 3 -L -s ./wrk2/scripts/train-ticket/travel.lua http://%s:8080 %s 100" % (frontend_ip,token))
 
 
 def init_social_networking(pause_time_seconds, host_mapping):
