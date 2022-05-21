@@ -1,0 +1,11 @@
+version: '3'
+services:
+  user-service:
+    image: gaganso/service_base
+    hostname: user-service
+    restart: always
+    entrypoint: UserService
+networks:
+  default:
+    external:
+      name: social-network-overlay

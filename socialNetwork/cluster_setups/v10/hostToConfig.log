@@ -1,0 +1,4 @@
+serverless-2,frontend.yaml
+serverless-3,monitoring.yaml
+serverless-4,services.yaml
+serverless-5,backend.yaml

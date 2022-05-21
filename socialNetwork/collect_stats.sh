@@ -1,0 +1,1 @@
+counter=0; while sleep 1; do echo $counter >> stats.log ; sudo docker stats --no-stream --format "table {{.Name}}\t{{.Container}}\t{{.CPUPerc}}\t{{.MemPerc}}\t{{.NetIO}}\t{{.BlockIO}}" >> stats.log ; counter=$((counter+1));done

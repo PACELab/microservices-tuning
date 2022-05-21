@@ -1,0 +1,15 @@
+    hostname: social-graph-mongodb
+    hostname: social-graph-redis
+    hostname: write-home-timeline-rabbitmq
+    hostname: home-timeline-redis
+    hostname: compose-post-redis
+    hostname: post-storage-memcached
+    hostname: post-storage-mongodb
+    hostname: user-timeline-redis
+    hostname: user-timeline-mongodb
+    hostname: url-shorten-memcached
+    hostname: url-shorten-mongodb
+    hostname: user-memcached
+    hostname: user-mongodb
+    hostname: media-memcached
+    hostname: media-mongodb

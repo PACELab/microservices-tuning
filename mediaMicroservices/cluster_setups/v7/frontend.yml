@@ -1,0 +1,27 @@
+version: "3"
+services:
+#   Enables resolving container hostnames from host machine
+  dns-media:
+    image: defreitas/dns-proxy-server
+    volumes:
+      - /opt/dns-proxy-server/conf:/app/conf
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/resolv.conf:/etc/resolv.conf
+
+  nginx-web-server:
+    #image: yg397/openresty-thrift:xenial
+    image: pacelab/openresty-thrift:xenial
+    hostname: nginx-thrift
+    ports:
+      - 8080:8080
+    restart: always
+    volumes:
+      - ./nginx-web-server/lua-scripts:/usr/local/openresty/nginx/lua-scripts
+      - ./nginx-web-server/conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+      - ./nginx-web-server/jaeger-config.json:/usr/local/openresty/nginx/jaeger-config.json
+      - ./gen-lua:/gen-lua
+      
+networks:
+  default:
+    external:
+      name: media-overlay

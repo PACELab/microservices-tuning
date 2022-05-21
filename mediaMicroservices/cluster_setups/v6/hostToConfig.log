@@ -1,0 +1,5 @@
+serverless-dev2,monitoring.yml
+serverless-dev1,frontend.yml
+serverless-dev4,backend1.yml
+serverless-dev5,backend2.yml
+serverless-dev3,services1.yml

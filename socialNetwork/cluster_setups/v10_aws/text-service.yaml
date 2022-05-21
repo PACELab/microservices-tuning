@@ -1,0 +1,11 @@
+version: '3'
+services:
+  text-service:
+    image: gaganso/service_base
+    hostname: text-service
+    restart: always
+    entrypoint: TextService
+networks:
+  default:
+    external:
+      name: social-network-overlay

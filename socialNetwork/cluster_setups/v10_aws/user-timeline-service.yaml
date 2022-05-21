@@ -1,0 +1,11 @@
+version: '3'
+services:
+  user-timeline-service:
+    image: gaganso/service_base
+    hostname: user-timeline-service
+    restart: always
+    entrypoint: UserTimelineService
+networks:
+  default:
+    external:
+      name: social-network-overlay

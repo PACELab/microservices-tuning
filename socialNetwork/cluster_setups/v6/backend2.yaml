@@ -1,0 +1,62 @@
+version: "3"
+services:
+
+  write-home-timeline-rabbitmq:
+    image: rabbitmq
+    hostname: write-home-timeline-rabbitmq
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "WRITE-HOME-TIMELINE-RABBITMQ"
+      RABBITMQ_DEFAULT_VHOST: "/"
+#    ports:
+#      - 15672:15672
+#      - 5672:5672
+    restart: always
+
+  home-timeline-redis:
+    image: redis
+    hostname: home-timeline-redis
+#    ports:
+#      - 6381:6379
+    restart: always
+
+  compose-post-redis:
+    image: redis
+    hostname: compose-post-redis
+#    ports:
+#      - 6382:6379
+    restart: always
+
+  post-storage-memcached:
+    image: memcached
+    hostname: post-storage-memcached
+#    ports:
+#      - 11212:11211
+    environment:
+      - MEMCACHED_CACHE_SIZE=256
+    restart: always
+
+  post-storage-mongodb:
+    image: mongo
+    hostname: post-storage-mongodb
+#    ports:
+#      - 27019:27017
+    restart: always
+
+  media-memcached:
+    image: memcached
+    hostname: media-memcached
+#    ports:
+#      - 11215:11211
+    restart: always
+
+  media-mongodb:
+    image: mongo
+    hostname: media-mongodb
+#    ports:
+#      - 27024:27017
+    restart: always
+
+networks:
+  default:
+    external:
+      name: social-network-overlay

@@ -1,0 +1,25 @@
+networks:
+  default:
+    external: {name: social-network-overlay}
+services:
+  compose-post-redis: {command: --maxmemory 1024 --maxmemory-policy volatile-ttl --maxmemory-samples
+      8 --hz 20 --zset-max-ziplist-entries 256, hostname: compose-post-redis, image: redis,
+    restart: always}
+  home-timeline-redis: {hostname: home-timeline-redis, image: redis, restart: always}
+  media-memcached: {hostname: media-memcached, image: memcached, restart: always}
+  media-mongodb: {hostname: media-mongodb, image: mongo, restart: always}
+  post-storage-memcached: {command: -m 768 -c 1024 -R 0 -t 2 -f 2.5911548342009465,
+    hostname: post-storage-memcached, image: memcached, restart: always}
+  post-storage-mongodb: {hostname: post-storage-mongodb, image: mongo, restart: always}
+  social-graph-mongodb: {hostname: social-graph-mongodb, image: mongo, restart: always}
+  social-graph-redis: {hostname: social-graph-redis, image: redis, restart: always}
+  url-shorten-memcached: {hostname: url-shorten-memcached, image: memcached, restart: always}
+  url-shorten-mongodb: {hostname: url-shorten-mongodb, image: mongo, restart: always}
+  user-memcached: {hostname: user-memcached, image: memcached, restart: always}
+  user-mongodb: {hostname: user-mongodb, image: mongo, restart: always}
+  user-timeline-mongodb: {command: --wiredTigerCacheSizeGB 0.45000349635061143 --serviceExecutor
+      adaptive --wiredTigerCollectionBlockCompressor snappy --setParameter wiredTigerConcurrentReadTransactions=128
+      --setParameter wiredTigerConcurrentWriteTransactions=224, hostname: user-timeline-mongodb,
+    image: mongo, restart: always}
+  user-timeline-redis: {hostname: user-timeline-redis, image: redis, restart: always}
+version: '3'

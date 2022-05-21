@@ -1,0 +1,11 @@
+version: '3'
+services:
+  user-mention-service:
+    image: gaganso/service_base
+    hostname: user-mention-service
+    restart: always
+    entrypoint: UserMentionService
+networks:
+  default:
+    external:
+      name: social-network-overlay

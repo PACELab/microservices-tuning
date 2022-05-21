@@ -1,0 +1,113 @@
+version: "3"
+services:
+
+  
+  social-graph-service:
+    image: gaganso/threadmanager:final
+    hostname: social-graph-service
+#    ports:
+#      - 10000:9090
+    restart: always
+    entrypoint: SocialGraphService
+
+  write-home-timeline-service:
+    image: gaganso/threadmanager:final
+    hostname: write-home-timeline-service
+    restart: always
+    entrypoint: WriteHomeTimelineService
+
+  compose-post-service:
+    image: gaganso/threadmanager:final
+    hostname: compose-post-service
+#    ports:
+#      - 10001:9090
+    restart: always
+    entrypoint: ComposePostService
+
+  post-storage-service:
+    image: gaganso/threadmanager:final
+    hostname: post-storage-service
+    ports:
+      - 10002:9090
+    restart: always
+    entrypoint: PostStorageService
+
+  user-timeline-service:
+    image: gaganso/threadmanager:final
+    hostname: user-timeline-service
+#    ports:
+#      - 10003:9090
+    restart: always
+    entrypoint: UserTimelineService
+
+  url-shorten-service:
+    image: gaganso/threadmanager:final
+    hostname: url-shorten-service
+#    ports:
+#      - 10004:9090
+    restart: always
+    entrypoint: UrlShortenService
+
+  user-service:
+    image: gaganso/threadmanager:final
+    hostname: user-service
+#    ports:
+#      - 10005:9090
+    restart: always
+    entrypoint: UserService
+
+  media-service:
+    image: gaganso/threadmanager:final
+    hostname: media-service
+#    ports:
+#      - 10006:9090
+    restart: always
+    entrypoint: MediaService
+
+  text-service:
+    image: gaganso/threadmanager:final
+    hostname: text-service
+#    ports:
+#      - 10007:9090
+    restart: always
+    entrypoint: TextService
+
+  unique-id-service:
+    image: gaganso/threadmanager:final
+    hostname: unique-id-service
+#    ports:
+#      - 10008:9090
+    restart: always
+    entrypoint: UniqueIdService
+
+  user-mention-service:
+    image: gaganso/threadmanager:final
+    hostname: user-mention-service
+#    ports:
+#      - 10009:9090
+    restart: always
+    entrypoint: UserMentionService
+
+  home-timeline-service:
+    image: gaganso/threadmanager:final
+    hostname: home-timeline-service
+#    ports:
+#      - 10010:9090
+    restart: always
+    entrypoint: HomeTimelineService
+
+  write-home-timeline-rabbitmq:
+    image: rabbitmq
+    hostname: write-home-timeline-rabbitmq
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "WRITE-HOME-TIMELINE-RABBITMQ"
+      RABBITMQ_DEFAULT_VHOST: "/"
+#    ports:
+#      - 15672:15672
+#      - 5672:5672
+    restart: always
+
+networks:
+  default:
+    external:
+      name: social-network-overlay

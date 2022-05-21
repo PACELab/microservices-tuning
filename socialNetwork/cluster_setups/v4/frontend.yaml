@@ -1,0 +1,52 @@
+version: "3"
+services:
+
+  nginx-thrift:
+    image: yg397/openresty-thrift:xenial
+    hostname: nginx-thrift
+    ports:
+      - 8080:8080
+    restart: always
+    volumes:
+      - ~/DeathStarBench/socialNetwork/nginx-web-server/lua-scripts:/usr/local/openresty/nginx/lua-scripts
+      - ~/DeathStarBench/socialNetwork/nginx-web-server/pages:/usr/local/openresty/nginx/pages
+      - ~/DeathStarBench/socialNetwork/nginx-web-server/conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+      - ~/DeathStarBench/socialNetwork/nginx-web-server/jaeger-config.json:/usr/local/openresty/nginx/jaeger-config.json
+      - ~/DeathStarBench/socialNetwork/gen-lua:/gen-lua
+
+  media-frontend:
+    image: yg397/media-frontend:xenial
+    hostname: media-frontend
+    ports:
+      - 8081:8080
+    restart: always
+    volumes:
+      - ~/DeathStarBench/socialNetwork/media-frontend/lua-scripts:/usr/local/openresty/nginx/lua-scripts
+      - ~/DeathStarBench/socialNetwork/media-frontend/conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+
+  media-service:
+    image: pacelab/service_base
+    hostname: media-service
+#    ports:
+#      - 10006:9090
+    restart: always
+    entrypoint: MediaService
+
+  media-memcached:
+    image: memcached
+    hostname: media-memcached
+#    ports:
+#      - 11215:11211
+    restart: always
+
+  media-mongodb:
+    image: mongo
+    hostname: media-mongodb
+#    ports:
+#      - 27024:27017
+    restart: always
+
+networks:
+  default:
+    external:
+      name: social-network-overlay

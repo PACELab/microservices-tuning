@@ -1,0 +1,29 @@
+networks:
+  default:
+    external: {name: media-microservices-overlay-2}
+services:
+  cast-info-memcached: {hostname: cast-info-memcached, image: memcached, restart: always}
+  cast-info-mongodb: {hostname: cast-info-mongodb, image: mongo, restart: always}
+  compose-review-memcached: {hostname: compose-review-memcached, image: memcached,
+    restart: always}
+  movie-id-memcached: {hostname: movie-id-memcached, image: memcached, restart: always}
+  movie-id-mongodb: {hostname: movie-id-mongodb, image: mongo, restart: always}
+  movie-info-memcached: {hostname: movie-info-memcached, image: memcached, restart: always}
+  movie-info-mongodb: {hostname: movie-info-mongodb, image: mongo, restart: always}
+  movie-review-mongodb:
+    hostname: movie-review-mongodb
+    image: mongo
+    ports: ['27017:27022']
+    restart: always
+  movie-review-redis: {hostname: movie-review-redis, image: redis, restart: always}
+  plot-memcached: {hostname: plot-memcached, image: memcached, restart: always}
+  plot-mongodb: {hostname: plot-mongodb, image: mongo, restart: always}
+  rating-redis: {hostname: rating-redis, image: redis, restart: always}
+  review-storage-memcached: {hostname: review-storage-memcached, image: memcached,
+    restart: always}
+  review-storage-mongodb: {hostname: review-storage-mongodb, image: mongo, restart: always}
+  user-memcached: {hostname: user-memcached, image: memcached, restart: always}
+  user-mongodb: {hostname: user-mongodb, image: mongo, restart: always}
+  user-review-mongodb: {hostname: user-review-mongodb, image: mongo, restart: always}
+  user-review-redis: {hostname: user-review-redis, image: redis, restart: always}
+version: '3'

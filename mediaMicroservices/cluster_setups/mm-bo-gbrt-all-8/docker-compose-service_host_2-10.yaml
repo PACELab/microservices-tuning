@@ -1,0 +1,29 @@
+networks:
+  default:
+    external: {name: media-microservices-overlay-2}
+services:
+  cast-info-service: {entrypoint: CastInfoService, hostname: cast-info-service, image: gaganso/media_threads,
+    restart: always}
+  compose-review-service: {entrypoint: ComposeReviewService, hostname: compose-review-service,
+    image: gaganso/media_threads, restart: always}
+  movie-id-service: {entrypoint: MovieIdService, hostname: movie-id-service, image: gaganso/media_threads,
+    restart: always}
+  movie-info-service: {entrypoint: MovieInfoService, hostname: movie-info-service,
+    image: gaganso/media_threads, restart: always}
+  movie-review-service: {entrypoint: MovieReviewService, hostname: movie-review-service,
+    image: gaganso/media_threads, restart: always}
+  plot-service: {entrypoint: PlotService, hostname: plot-service, image: gaganso/media_threads,
+    restart: always}
+  rating-service: {entrypoint: RatingService, hostname: rating-service, image: gaganso/media_threads,
+    restart: always}
+  review-storage-service: {entrypoint: ReviewStorageService, hostname: review-storage-service,
+    image: gaganso/media_threads, restart: always}
+  text-service: {entrypoint: TextService, hostname: text-service, image: gaganso/media_threads,
+    restart: always}
+  unique-id-service: {entrypoint: UniqueIdService, hostname: unique-id-service, image: gaganso/media_threads,
+    restart: always}
+  user-review-service: {entrypoint: UserReviewService, hostname: user-review-service,
+    image: gaganso/media_threads, restart: always}
+  user-service: {entrypoint: UserService, hostname: user-service, image: gaganso/media_threads,
+    restart: always}
+version: '3'

@@ -1,0 +1,28 @@
+version: "3"
+services:
+  social-graph-service:
+    image: gaganso/service_base
+    hostname: social-graph-service
+#    ports:
+#      - 10000:9090
+    restart: always
+    entrypoint: SocialGraphService
+
+  user-service:
+    image: gaganso/service_base
+    hostname: user-service
+#    ports:
+#      - 10005:9090
+    restart: always
+    entrypoint: UserService
+
+  social-graph-redis:
+    image: redis
+    hostname: social-graph-redis
+#    ports:
+#      - 6380:6379
+    restart: always
+networks:
+  default:
+    external:
+      name: test-overlay

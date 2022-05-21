@@ -1,0 +1,14 @@
+version: "3"
+services:
+  unique-id-service:
+    image: yg397/media-microservices
+    hostname: unique-id-service
+#    ports:
+#      - 10001:9090
+    restart: always
+    entrypoint: UniqueIdService
+
+networks:
+  default:
+    external:
+      name: media-overlay

@@ -1,0 +1,102 @@
+version: "3"
+services:
+
+  
+  social-graph-service:
+    image: pacelab/service_base
+    hostname: social-graph-service
+#    ports:
+#      - 10000:9090
+    restart: always
+    entrypoint: SocialGraphService
+
+  write-home-timeline-service:
+    image: pacelab/service_base
+    hostname: write-home-timeline-service
+    restart: always
+    entrypoint: WriteHomeTimelineService
+
+  compose-post-service:
+    image: pacelab/service_base
+    hostname: compose-post-service
+#    ports:
+#      - 10001:9090
+    restart: always
+    entrypoint: ComposePostService
+
+  post-storage-service:
+    image: pacelab/service_base
+    hostname: post-storage-service
+    ports:
+      - 10002:9090
+    restart: always
+    entrypoint: PostStorageService
+
+  user-timeline-service:
+    image: pacelab/service_base
+    hostname: user-timeline-service
+#    ports:
+#      - 10003:9090
+    restart: always
+    entrypoint: UserTimelineService
+
+  url-shorten-service:
+    image: pacelab/service_base
+    hostname: url-shorten-service
+#    ports:
+#      - 10004:9090
+    restart: always
+    entrypoint: UrlShortenService
+
+  user-service:
+    image: pacelab/service_base
+    hostname: user-service
+#    ports:
+#      - 10005:9090
+    restart: always
+    entrypoint: UserService
+
+  media-service:
+    image: pacelab/service_base
+    hostname: media-service
+#    ports:
+#      - 10006:9090
+    restart: always
+    entrypoint: MediaService
+
+  text-service:
+    image: pacelab/service_base
+    hostname: text-service
+#    ports:
+#      - 10007:9090
+    restart: always
+    entrypoint: TextService
+
+  unique-id-service:
+    image: pacelab/service_base
+    hostname: unique-id-service
+#    ports:
+#      - 10008:9090
+    restart: always
+    entrypoint: UniqueIdService
+
+  user-mention-service:
+    image: pacelab/service_base
+    hostname: user-mention-service
+#    ports:
+#      - 10009:9090
+    restart: always
+    entrypoint: UserMentionService
+
+  home-timeline-service:
+    image: pacelab/service_base
+    hostname: home-timeline-service
+#    ports:
+#      - 10010:9090
+    restart: always
+    entrypoint: HomeTimelineService
+
+networks:
+  default:
+    external:
+      name: social-network-overlay

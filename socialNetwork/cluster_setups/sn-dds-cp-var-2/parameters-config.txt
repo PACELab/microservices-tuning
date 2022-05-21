@@ -1,0 +1,2 @@
+compose-post-service_io_threads,3
+compose-post-service_worker_threads,698

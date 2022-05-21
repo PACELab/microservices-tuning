@@ -1,0 +1,107 @@
+version: "3"
+services:
+
+  social-graph-mongodb:
+    image: mongo
+    hostname: social-graph-mongodb
+#    ports:
+#      - 27018:27017
+    restart: always
+
+  social-graph-redis:
+    image: redis
+    hostname: social-graph-redis
+#    ports:
+#      - 6380:6379
+    restart: always
+
+  home-timeline-redis:
+    image: redis
+    hostname: home-timeline-redis
+#    ports:
+#      - 6381:6379
+    restart: always
+
+  compose-post-redis:
+    image: redis
+    hostname: compose-post-redis
+#    ports:
+#      - 6382:6379
+    restart: always
+
+  post-storage-memcached:
+    image: memcached
+    hostname: post-storage-memcached
+#    ports:
+#      - 11212:11211
+    environment:
+      - MEMCACHED_CACHE_SIZE=256
+    restart: always
+
+  post-storage-mongodb:
+    image: mongo
+    hostname: post-storage-mongodb
+#    ports:
+#      - 27019:27017
+    restart: always
+
+  user-timeline-redis:
+    image: redis
+    hostname: user-timeline-redis
+#    ports:
+#      - 6383:6379
+    restart: always
+
+  user-timeline-mongodb:
+    image: mongo
+    hostname: user-timeline-mongodb
+#    ports:
+#      - 27020:27017
+    restart: always
+
+  url-shorten-memcached:
+    image: memcached
+    hostname: url-shorten-memcached
+#    ports:
+#      - 11213:11211
+    restart: always
+
+  url-shorten-mongodb:
+    image: mongo
+    hostname: url-shorten-mongodb
+#    ports:
+#      - 27021:27017
+    restart: always
+
+  user-memcached:
+    image: memcached
+    hostname: user-memcached
+#    ports:
+#      - 11214:11211
+    restart: always
+
+  user-mongodb:
+    image: mongo
+    hostname: user-mongodb
+#    ports:
+#      - 27023:27017
+    restart: always
+
+  media-memcached:
+    image: memcached
+    hostname: media-memcached
+#    ports:
+#      - 11215:11211
+    restart: always
+
+  media-mongodb:
+    image: mongo
+    hostname: media-mongodb
+#    ports:
+#      - 27024:27017
+    restart: always
+
+networks:
+  default:
+    external:
+      name: social-network-overlay

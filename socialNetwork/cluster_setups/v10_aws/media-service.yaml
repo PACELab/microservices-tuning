@@ -1,0 +1,11 @@
+version: '3'
+services:
+  media-service:
+    image: gaganso/service_base
+    hostname: media-service
+    restart: always
+    entrypoint: MediaService
+networks:
+  default:
+    external:
+      name: social-network-overlay

@@ -1,0 +1,4 @@
+compose-post-service_io_threads,44.0
+compose-post-service_worker_threads,527.0
+text-service_io_threads,6.0
+text-service_worker_threads,355.0

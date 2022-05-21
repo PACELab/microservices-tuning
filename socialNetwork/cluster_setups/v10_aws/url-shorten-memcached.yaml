@@ -1,0 +1,10 @@
+version: '3'
+services:
+  url-shorten-memcached:
+    image: memcached
+    hostname: url-shorten-memcached
+    restart: always
+networks:
+  default:
+    external:
+      name: social-network-overlay

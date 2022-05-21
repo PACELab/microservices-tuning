@@ -1,0 +1,36 @@
+version: "3"
+services:
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    hostname: jaeger
+    ports:
+#      - 5775:5775/udp
+#      - 6831:6831/udp
+#      - 6832:6832/udp
+#      - 5778:5778
+      - 16686:16686
+#      - 14268:14268
+#      - 9411:9411
+    restart: always
+    environment:
+      - COLLECTOR_ZIPKIN_HTTP_PORT=9411
+
+  user-service:
+    image: gaganso/service_base
+    hostname: user-service
+#    ports:
+#      - 10005:9090
+    restart: always
+    entrypoint: UserService
+
+  social-graph-redis:
+    image: redis
+    hostname: social-graph-redis
+#    ports:
+#      - 6380:6379
+    restart: always
+
+networks:
+  default:
+    external:
+      name: test-overlay

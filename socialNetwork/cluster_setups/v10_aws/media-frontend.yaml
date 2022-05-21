@@ -1,0 +1,15 @@
+version: '3'
+services:
+  media-frontend:
+    image: yg397/media-frontend:xenial
+    hostname: media-frontend
+    ports:
+    - 8081:8080
+    restart: always
+    volumes:
+    - /data/big_disk/projects/DeathStarBenchMirror/socialNetwork/media-frontend/lua-scripts:/usr/local/openresty/nginx/lua-scripts
+    - /data/big_disk/projects/DeathStarBenchMirror/socialNetwork/media-frontend/conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+networks:
+  default:
+    external:
+      name: social-network-overlay

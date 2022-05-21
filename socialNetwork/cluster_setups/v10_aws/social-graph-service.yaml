@@ -1,0 +1,11 @@
+version: '3'
+services:
+  social-graph-service:
+    image: gaganso/service_base
+    hostname: social-graph-service
+    restart: always
+    entrypoint: SocialGraphService
+networks:
+  default:
+    external:
+      name: social-network-overlay

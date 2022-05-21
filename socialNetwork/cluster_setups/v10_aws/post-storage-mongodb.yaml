@@ -1,0 +1,10 @@
+version: '3'
+services:
+  post-storage-mongodb:
+    image: mongo
+    hostname: post-storage-mongodb
+    restart: always
+networks:
+  default:
+    external:
+      name: social-network-overlay

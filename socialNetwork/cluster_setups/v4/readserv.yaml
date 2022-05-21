@@ -1,0 +1,86 @@
+version: "3"
+services:
+  home-timeline-redis:
+    image: redis
+    hostname: home-timeline-redis
+#    ports:
+#      - 6381:6379
+    restart: always
+
+  post-storage-service:
+    image: pacelab/service_base
+    hostname: post-storage-service
+    ports:
+      - 10002:9090
+    restart: always
+    entrypoint: PostStorageService
+
+  post-storage-memcached:
+    #image: memcached
+    image: bitnami/memcached:latest
+    hostname: post-storage-memcached
+#    ports:
+#      - 11212:11211
+    environment:
+      - MEMCACHED_CACHE_SIZE=256
+    command: /run.sh -t 4 -c 65536
+    restart: always
+
+#   post-storage-memcached:
+#     image: memcached
+#     hostname: post-storage-memcached
+# #    ports:
+# #      - 11212:11211
+#     environment:
+#       - MEMCACHED_CACHE_SIZE=256
+#     restart: always
+
+  user-timeline-service:
+    image: pacelab/service_base
+    hostname: user-timeline-service
+#    ports:
+#      - 10003:9090
+    restart: always
+    entrypoint: UserTimelineService
+
+  user-timeline-redis:
+    image: redis
+    hostname: user-timeline-redis
+#    ports:
+#      - 6383:6379
+    restart: always
+
+  home-timeline-service:
+    image: pacelab/service_base
+    hostname: home-timeline-service
+#    ports:
+#      - 10010:9090
+    restart: always
+    entrypoint: HomeTimelineService
+
+  social-graph-service:
+    image: pacelab/service_base
+    hostname: social-graph-service
+#    ports:
+#      - 10000:9090
+    restart: always
+    entrypoint: SocialGraphService
+
+  user-mongodb:
+    image: mongo
+    hostname: user-mongodb
+#    ports:
+#      - 27023:27017
+    restart: always
+
+  url-shorten-mongodb:
+    image: mongo
+    hostname: url-shorten-mongodb
+#    ports:
+#      - 27021:27017
+    restart: always
+
+networks:
+  default:
+    external:
+      name: social-network-overlay

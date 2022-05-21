@@ -1,0 +1,20 @@
+networks:
+  default:
+    external: {name: social-network-overlay}
+services:
+  compose-post-redis: {hostname: compose-post-redis, image: redis, restart: always}
+  home-timeline-redis: {hostname: home-timeline-redis, image: redis, restart: always}
+  media-memcached: {hostname: media-memcached, image: memcached, restart: always}
+  media-mongodb: {hostname: media-mongodb, image: mongo, restart: always}
+  post-storage-memcached: {command: -m 1167.0 -c 512.0 -R 20.0 -t 5.0 -f 1.5, hostname: post-storage-memcached,
+    image: memcached, restart: always}
+  post-storage-mongodb: {hostname: post-storage-mongodb, image: mongo, restart: always}
+  social-graph-mongodb: {hostname: social-graph-mongodb, image: mongo, restart: always}
+  social-graph-redis: {hostname: social-graph-redis, image: redis, restart: always}
+  url-shorten-memcached: {hostname: url-shorten-memcached, image: memcached, restart: always}
+  url-shorten-mongodb: {hostname: url-shorten-mongodb, image: mongo, restart: always}
+  user-memcached: {hostname: user-memcached, image: memcached, restart: always}
+  user-mongodb: {hostname: user-mongodb, image: mongo, restart: always}
+  user-timeline-mongodb: {hostname: user-timeline-mongodb, image: mongo, restart: always}
+  user-timeline-redis: {hostname: user-timeline-redis, image: redis, restart: always}
+version: '3'

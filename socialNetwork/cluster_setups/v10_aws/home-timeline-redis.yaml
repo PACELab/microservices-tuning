@@ -1,0 +1,10 @@
+version: '3'
+services:
+  home-timeline-redis:
+    image: redis
+    hostname: home-timeline-redis
+    restart: always
+networks:
+  default:
+    external:
+      name: social-network-overlay

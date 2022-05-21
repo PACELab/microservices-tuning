@@ -1,0 +1,46 @@
+version: "3"
+services:
+  movie-id-service:
+    image: yg397/media-microservices
+    hostname: movie-id-service
+#    ports:
+#      - 10002:9090
+    restart: always
+    entrypoint: MovieIdService
+
+  text-service:
+    image: yg397/media-microservices
+    hostname: text-service
+#    ports:
+#      - 10003:9090
+    restart: always
+    entrypoint: TextService
+
+  rating-service:
+    image: yg397/media-microservices
+    hostname: rating-service
+#    ports:
+#      - 10004:9090
+    restart: always
+    entrypoint: RatingService
+
+  user-service:
+    image: yg397/media-microservices
+    hostname: user-service
+#    ports:
+#      - 10005:9090
+    restart: always
+    entrypoint: UserService
+
+  compose-review-service:
+    image: yg397/media-microservices
+    hostname: compose-review-service
+#    ports:
+#      - 10006:9090
+    restart: always
+    entrypoint: ComposeReviewService
+
+networks:
+  default:
+    external:
+      name: media-overlay

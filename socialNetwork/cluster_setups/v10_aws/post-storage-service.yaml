@@ -1,0 +1,13 @@
+version: '3'
+services:
+  post-storage-service:
+    image: gaganso/service_base
+    hostname: post-storage-service
+    ports:
+    - 10002:9090
+    restart: always
+    entrypoint: PostStorageService
+networks:
+  default:
+    external:
+      name: social-network-overlay

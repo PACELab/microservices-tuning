@@ -1,0 +1,7 @@
+networks:
+  default:
+    external: {name: media-microservices-overlay-2}
+services:
+  movie-info-service: {entrypoint: MovieInfoService, hostname: movie-info-service,
+    image: gaganso/media-original, restart: always}
+version: '3'

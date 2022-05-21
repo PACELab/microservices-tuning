@@ -1,0 +1,103 @@
+version: "3"
+services:
+  unique-id-service:
+    image: yg397/media-microservices
+    hostname: unique-id-service
+#    ports:
+#      - 10001:9090
+    restart: always
+    entrypoint: UniqueIdService
+
+  movie-id-service:
+    image: yg397/media-microservices
+    hostname: movie-id-service
+#    ports:
+#      - 10002:9090
+    restart: always
+    entrypoint: MovieIdService
+
+  text-service:
+    image: yg397/media-microservices
+    hostname: text-service
+#    ports:
+#      - 10003:9090
+    restart: always
+    entrypoint: TextService
+
+  rating-service:
+    image: yg397/media-microservices
+    hostname: rating-service
+#    ports:
+#      - 10004:9090
+    restart: always
+    entrypoint: RatingService
+
+  user-service:
+    image: yg397/media-microservices
+    hostname: user-service
+#    ports:
+#      - 10005:9090
+    restart: always
+    entrypoint: UserService
+
+  compose-review-service:
+    image: yg397/media-microservices
+    hostname: compose-review-service
+#    ports:
+#      - 10006:9090
+    restart: always
+    entrypoint: ComposeReviewService
+
+  review-storage-service:
+    image: yg397/media-microservices
+    hostname: review-storage-service
+#    ports:
+#      - 10007:9090
+    restart: always
+    entrypoint: ReviewStorageService
+
+  user-review-service:
+    image: yg397/media-microservices
+    hostname: user-review-service
+#    ports:
+#      - 10008:9090
+    restart: always
+    entrypoint: UserReviewService
+
+  movie-review-service:
+    image: yg397/media-microservices
+    hostname: movie-review-service
+#    ports:
+#      - 10009:9090
+    restart: always
+    entrypoint: MovieReviewService
+
+  cast-info-service:
+    image: yg397/media-microservices
+    hostname: cast-info-service
+#    ports:
+#      - 10010:9090
+    restart: always
+    entrypoint: CastInfoService
+
+
+  plot-service:
+    image: yg397/media-microservices
+    hostname: plot-service
+#    ports:
+#      - 10011:9090
+    restart: always
+    entrypoint: PlotService
+
+  movie-info-service:
+    image: yg397/media-microservices
+    hostname: movie-info-service
+#    ports:
+#      - 10012:9090
+    restart: always
+    entrypoint: MovieInfoService
+
+networks:
+  default:
+    external:
+      name: media-overlay
