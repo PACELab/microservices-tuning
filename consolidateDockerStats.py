@@ -30,14 +30,14 @@ class AccumulateStats():
         self.machinesToBeUsed = exptConfigs['machinesToBeUsed']
         self.versionName = exptConfigs['versionName']
 
-        self.folderPrefix="/home/ubuntu/uservices/uservices-perf-analysis"
+        self.folderPrefix="."
         self.outputDir = str(self.folderPrefix)+"/"+exptConfigs['outputDir']
         self.dockStatsDir = str(self.outputDir)+"/docker_stats/"
         self.dockStatsFilePrefix = exptConfigs['filePrefix']
 
         
-        self.sshCommandPrefix = ['ssh', '-i','/home/ubuntu/compass.key']
-        self.scp_command_prefix = ['scp', '-i','/home/ubuntu/compass.key']
+        self.sshCommandPrefix = ['ssh', '-i','./compass.key']
+        self.scp_command_prefix = ['scp', '-i','./compass.key']
         self.mpstatLogFilename = str(self.outputDir)+'/mpstats_'+str(self.versionName)+'.log'
 
 
@@ -201,7 +201,7 @@ if(not appCode in listOfApps):
     print ("\t appCode: %s is not found in list of apps.. "%(appCode,listOfApps))
     sys.exit()
 app_folder = {"SN": "socialNetwork", "MM": "mediaMicroservices", "HR":"hotelReservation","TT":"trainTicket"}
-cluster_config_dir = "/home/ubuntu/uservices/DeathStarBench/%s/cluster_setups/"%app_folder[appCode]
+cluster_config_dir = "./%s/cluster_setups/"%app_folder[appCode]
 
 #versionName is of the form v_default_0_rps500. So split on '_' and get the second element in the list.
 with open(cluster_config_dir + versionName.split('_')[1] + "/host_roles.pkl","rb") as host_roles_f:

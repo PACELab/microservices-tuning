@@ -25,7 +25,7 @@ def generate_commands(baseOutputDir,exptSetDir,baseVersionName,startIter,numIter
     inBetweenSleep = 50
     bufferTime = 0
     clusterNtpFreq = 3600//(duration+inBetweenSleep+bufferTime) # once in 8 iterations. roughly 
-    #clusterNtpCmd = "cd ntp_stuff && ./synchronize_cluster_hosts.sh 1 /home/ubuntu/uservices/DeathStarBench/socialNetwork/cluster_setups/%s/hostToConfig.log && cd .. && sleep 30"%exptSetDir # If the first argument to synchronize_cluster_hosts is 1, it sets up the NTP cluster. If it is 0, it only collects the offset value from all the VMs in the cluster
+    #clusterNtpCmd = "cd ntp_stuff && ./synchronize_cluster_hosts.sh 1 ./socialNetwork/cluster_setups/%s/hostToConfig.log && cd .. && sleep 30"%exptSetDir # If the first argument to synchronize_cluster_hosts is 1, it sets up the NTP cluster. If it is 0, it only collects the offset value from all the VMs in the cluster
     cumulNumIters = 0
     for curIter in range(startIter,startIter+numIters):
         if curIter == 0:
@@ -106,7 +106,7 @@ def generate_commands(baseOutputDir,exptSetDir,baseVersionName,startIter,numIter
             allCmds.append("sleep "+str(inBetweenSleep));
             # synchronization is needed only if you are collecting Jaeger traces.
             if collect_jaeger and curIter == FINAL_ITERATION :
-                allCmds.append("cd ntp_stuff && ./synchronize_cluster_hosts.sh 0 /home/ubuntu/uservices/DeathStarBench/socialNetwork/cluster_setups/%s/hostToConfig.log && cd .."%exptSetDir)# Just collect the ntp client offset. Will help in debugging if the Jaeger traces seem off. 
+                allCmds.append("cd ntp_stuff && ./synchronize_cluster_hosts.sh 0 ./socialNetwork/cluster_setups/%s/hostToConfig.log && cd .."%exptSetDir)# Just collect the ntp client offset. Will help in debugging if the Jaeger traces seem off. 
     create_script(allCmds,curIter,opScriptFname,dockerStatsCmds,allJaegerCmds,collect_jaeger)
 
 def create_script(allCmds,curIter,opScriptFname,dockerStatsCmds,allJaegerCmds,collect_jaeger):

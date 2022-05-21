@@ -60,7 +60,7 @@ class Pso:
         
         recommendation = optimizer.provide_recommendation()
         # extract values using recommendation.value
-        time_file = "/home/ubuntu/uservices/uservices-perf-analysis/results/%s/time.txt"%(self.current_sequence_folder)
+        time_file = "./results/%s/time.txt"%(self.current_sequence_folder)
         with open(time_file,"w") as f:
             f.write(str(self.total_time/self.args.model_iterations))
         print("Optimization time per iteration %f" % (self.total_time/self.args.model_iterations))

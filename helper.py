@@ -29,14 +29,14 @@ def run_online_config(result_folder, app_config_dir, app_config_iteration, clust
 
 
 def run_workload(duration):
-    cmd = "/home/ubuntu/uservices/uservices-perf-analysis/wrk2online/wrk -t 1 -c 4 -d 5400 -p 300 -L -s /home/ubuntu/uservices/uservices-perf-analysis/wrk2/scripts/social-network/compose-post.lua http://130.245.127.209:8080/wrk2-api//post/compose -R 150"
+    cmd = "./wrk2online/wrk -t 1 -c 4 -d 5400 -p 300 -L -s ./wrk2/scripts/social-network/compose-post.lua http://130.245.127.209:8080/wrk2-api//post/compose -R 150"
     p = Popen(cmd, stdout=PIPE, bufsize=1, universal_newlines=True, shell=True)
     i = 5
     while True:
         line = p.stdout.readline()
         if "0.950000" in line:
             reward = line.split()[0]
-            with open(f"/home/ubuntu/uservices/uservices-perf-analysis/{i}.latency", "w") as f:
+            with open(f"./{i}.latency", "w") as f:
                 f.write(reward)
             i += 5
 
@@ -69,11 +69,11 @@ def run_config(result_folder, app_config_dir, app_config_iteration, cluster_conf
                 continue
 
         time.sleep(pause_time_seconds)
-        os.chdir("/home/ubuntu/uservices/DeathStarBench/%s" %
+        os.chdir("./%s" %
                  app_folder_dict[app])
         # init_train_ticket()
         #init_social_networking(pause_time_seconds, host_mapping)
-        os.chdir("/home/ubuntu/uservices/uservices-perf-analysis")
+        os.chdir(".")
         print("Experiment: start %s" % datetime.datetime.now())
         # run 3+1 iteration of the experiment starting from "experiment_iteration"
         command_script = "generated_cmds_%s.sh" % str(cluster_number)
@@ -96,14 +96,14 @@ def run_config(result_folder, app_config_dir, app_config_iteration, cluster_conf
 
 
 def init_train_ticket():
-    os.system("/home/ubuntu/uservices/uservices-perf-analysis/wrk2/wrk -t 1 -c 1 -d 2 -R 1 -L -s /home/ubuntu/uservices/uservices-perf-analysis/wrk2/scripts/train-ticket/auth.lua http://130.245.127.237:8080")
-    with open("/home/ubuntu/uservices/uservices-perf-analysis/admin_token.txt") as f:
+    os.system("./wrk2/wrk -t 1 -c 1 -d 2 -R 1 -L -s ./wrk2/scripts/train-ticket/auth.lua http://130.245.127.237:8080")
+    with open("./admin_token.txt") as f:
         token = f.read()
         print(token)
-    print("/home/ubuntu/uservices/uservices-perf-analysis/wrk2/wrk -t 1 -c 1 -d 20 -R 3 -L -s /home/ubuntu/uservices/uservices-perf-analysis/wrk2/scripts/train-ticket/trains.lua http://130.245.127.237:8080 %s 100" % (token))
-    os.system("/home/ubuntu/uservices/uservices-perf-analysis/wrk2/wrk -t 1 -c 1 -d 20 -R 3 -L -s /home/ubuntu/uservices/uservices-perf-analysis/wrk2/scripts/train-ticket/trains.lua http://130.245.127.237:8080 %s 100" % (token))
-    os.system("/home/ubuntu/uservices/uservices-perf-analysis/wrk2/wrk -t 1 -c 1 -d 20 -R 3 -L -s /home/ubuntu/uservices/uservices-perf-analysis/wrk2/scripts/train-ticket/routes.lua http://130.245.127.237:8080 %s 100" % (token))
-    os.system("/home/ubuntu/uservices/uservices-perf-analysis/wrk2/wrk -t 1 -c 1 -d 20 -R 3 -L -s /home/ubuntu/uservices/uservices-perf-analysis/wrk2/scripts/train-ticket/travel.lua http://130.245.127.237:8080 %s 100" % (token))
+    print("./wrk2/wrk -t 1 -c 1 -d 20 -R 3 -L -s ./wrk2/scripts/train-ticket/trains.lua http://130.245.127.237:8080 %s 100" % (token))
+    os.system("./wrk2/wrk -t 1 -c 1 -d 20 -R 3 -L -s ./wrk2/scripts/train-ticket/trains.lua http://130.245.127.237:8080 %s 100" % (token))
+    os.system("./wrk2/wrk -t 1 -c 1 -d 20 -R 3 -L -s ./wrk2/scripts/train-ticket/routes.lua http://130.245.127.237:8080 %s 100" % (token))
+    os.system("./wrk2/wrk -t 1 -c 1 -d 20 -R 3 -L -s ./wrk2/scripts/train-ticket/travel.lua http://130.245.127.237:8080 %s 100" % (token))
 
 
 def init_social_networking(pause_time_seconds, host_mapping):
@@ -287,14 +287,14 @@ def write_app_config_csv(parameters_csv, config_template, current_config_index, 
 
 # Specify the hyperopt domain space for all hyperparameters
 def hyperopt_space(version, app):
-    # The file /home/ubuntu/uservices/uservices-perf-analysis/configs/first_exp/social_networking_parameters.csv has all the parameters, their ranges, whether they are discrete, or continous etc. This can be used to build the create the space. The assumption should be that there is a csv file with a list of parameters, their ranges, etc and the below has to be created from it.
+    # The file ./configs/first_exp/social_networking_parameters.csv has all the parameters, their ranges, whether they are discrete, or continous etc. This can be used to build the create the space. The assumption should be that there is a csv file with a list of parameters, their ranges, etc and the below has to be created from it.
     # Does space have to a dictionary? -- Yes
     space = dict()
     paramOrder = []
     header = True
     app_dict = {"SN": "social_networking", "MM": "media_microservices",
                 "HR": "hotel_reservation", "TT": "train_ticket"}
-    file = open('/home/ubuntu/uservices/uservices-perf-analysis/configs/%s/%s_parameters.csv' %
+    file = open('./configs/%s/%s_parameters.csv' %
                 (version, app_dict[app]))
 
     # code to create domain space by reading all the hyperparameters and their ranges from csv file
@@ -334,14 +334,14 @@ def hyperopt_space(version, app):
 
 # Specify the skopt domain space for all hyperparameters
 def skopt_space(version, app):
-    # The file /home/ubuntu/uservices/uservices-perf-analysis/configs/first_exp/social_networking_parameters.csv has all the parameters, their ranges, whether they are discrete, or continous etc. This can be used to build the create the space. The assumption should be that there is a csv file with a list of parameters, their ranges, etc and the below has to be created from it.
+    # The file ./configs/first_exp/social_networking_parameters.csv has all the parameters, their ranges, whether they are discrete, or continous etc. This can be used to build the create the space. The assumption should be that there is a csv file with a list of parameters, their ranges, etc and the below has to be created from it.
     # Does space have to a dictionary? -- Yes
     space = []
     paramOrder = []
     header = True
     app_dict = {"SN": "social_networking", "MM": "media_microservices",
                 "HR": "hotel_reservation", "TT": "train_ticket"}
-    file = open('/home/ubuntu/uservices/uservices-perf-analysis/configs/%s/%s_parameters.csv' %
+    file = open('./configs/%s/%s_parameters.csv' %
                 (version, app_dict[app]))
 
     # code to create domain space by reading all the hyperparameters and their ranges from csv file
@@ -376,14 +376,14 @@ def skopt_space(version, app):
 
 
 def ng_domain_space(version, app):
-    # The file /home/ubuntu/uservices/uservices-perf-analysis/configs/first_exp/social_networking_parameters.csv has all the parameters, their ranges, whether they are discrete, or continous etc. This can be used to build the create the space. The assumption should be that there is a csv file with a list of parameters, their ranges, etc and the below has to be created from it.
+    # The file ./configs/first_exp/social_networking_parameters.csv has all the parameters, their ranges, whether they are discrete, or continous etc. This can be used to build the create the space. The assumption should be that there is a csv file with a list of parameters, their ranges, etc and the below has to be created from it.
     # Does space have to a dictionary? -- Yes
     space = dict()
     paramOrder = []
     header = True
     app_dict = {"SN": "social_networking", "MM": "media_microservices",
                 "HR": "hotel_reservation", "TT": "train_ticket"}
-    file = open('/home/ubuntu/uservices/uservices-perf-analysis/configs/%s/%s_parameters.csv' %
+    file = open('./configs/%s/%s_parameters.csv' %
                 (version, app_dict[app]))
 
     # code to create domain space by reading all the hyperparameters and their ranges from csv file
@@ -425,7 +425,7 @@ def ng_domain_space(version, app):
 
 
 def get_objective_value(version, config_iteration, rps, experiment_iteration, metric=95, online=False):
-    result_folder = "/home/ubuntu/uservices/uservices-perf-analysis/results/"
+    result_folder = "./results/"
     if online:
         pass
     else:
@@ -454,7 +454,7 @@ def get_objective_value_old(version, config_iteration, rps, metric, experiment_i
     This is crude but is efficient than using csv/pandas?? Check.
     """
     percentile_index_map = {'P_95': -2}
-    result_folder = "/home/ubuntu/uservices/uservices-perf-analysis/results/"
+    result_folder = "./results/"
     summary_stats_file = result_folder + version + \
         "/v_%s_%d_rps%s/summary_merged_stats.csv" % (
             version, config_iteration, rps)
@@ -465,7 +465,7 @@ def get_objective_value_old(version, config_iteration, rps, metric, experiment_i
 
 
 def get_init_points(app, exp_type, sequence_number):
-    config_folder = '/home/ubuntu/uservices/uservices-perf-analysis/configs'
+    config_folder = './configs'
     df = pd.read_csv("%s/%s_%s_random_samples.csv" %
                      (config_folder, app.lower(), exp_type), header=None)
     slice_columns = list(range((sequence_number - 1) * 3, sequence_number*3))
@@ -512,7 +512,7 @@ def online_optimizer_helper(args, sequence_number, current_model_iteration, conf
 
     parameter_csv_file = app_file_suffix[args.app] + "_parameters.csv"
     configuration_csv_file = app_file_suffix[args.app] + "_config.csv"
-    result_folder = "/home/ubuntu/uservices/uservices-perf-analysis/results"
+    result_folder = "./results"
 
     # list of parameters, their ranges, etc.
     parameter_csv_path = os.path.join(app_config_dir, parameter_csv_file)
@@ -534,7 +534,7 @@ def optimizer_helper(args, sequence_number, current_model_iteration, config):
 
     parameter_csv_file = app_file_suffix[args.app] + "_parameters.csv"
     configuration_csv_file = app_file_suffix[args.app] + "_config.csv"
-    result_folder = "/home/ubuntu/uservices/uservices-perf-analysis/results"
+    result_folder = "./results"
 
     # list of parameters, their ranges, etc.
     parameter_csv_path = os.path.join(app_config_dir, parameter_csv_file)
@@ -554,7 +554,7 @@ def hybrid_helper(sequence_folder, app, n_samples, parameter_csv_path):
     Get the points explored by DDS
     """
     rps_dict = {"SN": 700, "MM": 500, "TT": 50}
-    result_folder = "/home/ubuntu/uservices/uservices-perf-analysis/results/"
+    result_folder = "./results/"
     perf = []
     for j in range(1, n_samples+1):
         objective_value_file = result_folder + sequence_folder + \

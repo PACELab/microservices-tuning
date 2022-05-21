@@ -121,9 +121,9 @@ def online_deploy_app(args, result_folder, app_config_dir, app_config_iteration,
 
 
 if __name__ == "__main__":
-    # percentile_across_requests("/home/ubuntu/uservices/uservices-perf-analysis/results/first_exp/v0_rps100/i0","SN")
-    # collect_stats("/home/ubuntu/uservices/uservices-perf-analysis/results","v11",0,"SN",[400],3)
-    #analysis("/home/ubuntu/uservices/uservices-perf-analysis/results", "configs/first_exp", 15, "first_exp", "SN", [450,500])
+    # percentile_across_requests("./results/first_exp/v0_rps100/i0","SN")
+    # collect_stats("./results","v11",0,"SN",[400],3)
+    #analysis("./results", "configs/first_exp", 15, "first_exp", "SN", [450,500])
     args = argument_parser()
     app_file_suffix = {"SN": "social_networking", "MM": "media_microservices",
                        "HR": "hotel_reservation", "TT": "train_ticket"}
@@ -131,7 +131,7 @@ if __name__ == "__main__":
                        "HR": "hotelReservation", "TT": "trainTicket"}
     parameter_csv_file = app_file_suffix[args.app]+"_parameters.csv"
     configuration_csv_file = app_file_suffix[args.app] + "_config.csv"
-    result_folder = "/home/ubuntu/uservices/uservices-perf-analysis/results"
+    result_folder = "./results"
 
     cluster_config_dir = "../DeathStarBench/%s/cluster_setups" % app_folder_dict[args.app]
 

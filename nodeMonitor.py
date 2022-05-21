@@ -32,8 +32,8 @@ class AccumulateStats():
         self.machinesToBeUsed = exptConfigs['machinesToBeUsed']
         self.versionName = exptConfigs['versionName']
 
-        self.outputDirPrefix = '/home/ubuntu/logs/'
-        self.folderPrefix="/home/ubuntu/uservices/uservices-perf-analysis"
+        self.outputDirPrefix = './logs/'
+        self.folderPrefix="."
         self.outputDir = str(self.folderPrefix)+"/"+exptConfigs['outputDir']
         self.dockStatsDir = str(self.outputDir)+"/docker_stats/"
 
@@ -41,9 +41,9 @@ class AccumulateStats():
         self.dummyProcNum = 7234 
         
         #self.funcContainerSuffix = str(self.versionName)+"_out.log"
-        self.sshCommandPrefix = ['ssh', '-i','/home/ubuntu/compass.key']
+        self.sshCommandPrefix = ['ssh', '-i','./compass.key']
         #self.sshCommandPrefix = ['ssh']
-        self.scpCommandPrefix = ['scp', '-i','/home/ubuntu/compass.key']
+        self.scpCommandPrefix = ['scp', '-i','./compass.key']
         #self.scpCommandPrefix = ['scp']
         self.dockerLogFilename = str(self.outputDir)+'/dockstats_'+str(self.versionName)+'.log'
         self.mpstatLogFilename = str(self.outputDir)+'/mpstats_'+str(self.versionName)+'_%s.log'
@@ -66,7 +66,7 @@ class AccumulateStats():
             'checkStatus' : ["ls","-ltr",self.outputDir,"| wc -l"],
             'consolidateLogs' : [str(self.dockStatsDir)+"/*",str(self.dockStatsDir)],
             'copyLatencyLogs' : [str(self.outputDir)+"/*.log",str(self.outputDir)],
-            'overwriteInvokerLog' : ["sudo","sh","-c ' ","echo 0",">","/home/ubuntu/invoker.log","'"], #"/tmp/wsklogs/invoker0/invoker0_logs.log","'"],
+            'overwriteInvokerLog' : ["sudo","sh","-c ' ","echo 0",">","./invoker.log","'"], #"/tmp/wsklogs/invoker0/invoker0_logs.log","'"],
             'overwriteControllerLog' : ["sudo","sh","-c ' ","echo 0",">","/tmp/wsklogs/controller0/controller0_logs.log","'"] #/tmp/wsklogs/controller0/controller0_logs.log
         }
         """
@@ -178,7 +178,7 @@ class AccumulateStats():
 
 def get_host_dict(app_code):
     app_code_folder_map = {"SN":"socialNetwork","HR":"hotelReservation","MM":"mediaMicroservices", "TT":"trainTicket"}
-    host_dict_file = "/home/ubuntu/uservices/DeathStarBench/%s/cluster_setups/v11/hostToConfig.log"%(app_code_folder_map[app_code])
+    host_dict_file = "./%s/cluster_setups/v11/hostToConfig.log"%(app_code_folder_map[app_code])
     with open(host_dict_file) as csv_file:
         reader = csv.reader(csv_file)
         host_dict = dict(reader)
@@ -228,7 +228,7 @@ emailRecipient = sys.argv[10]
 feNode = sys.argv[11]
 
 app_folder = {"SN": "socialNetwork", "MM": "mediaMicroservices", "HR":"hotelReservation","TT":"trainTicket"}
-cluster_config_dir = "/home/ubuntu/uservices/DeathStarBench/%s/cluster_setups/"%app_folder[appCode]
+cluster_config_dir = "./%s/cluster_setups/"%app_folder[appCode]
 
 #versionName is of the form v_default_0_rps500. So split on '_' and get the second element in the list.
 with open(cluster_config_dir + versionName.split('_')[1] + "/host_roles.pkl","rb") as host_roles_f:

@@ -53,16 +53,16 @@ def init_nginx_conf(app,frontend_host):
     This method ensures the nginx.temp of the previous run is replaced by the template file as that has the default config for nginx.
     """
     app_folder_dict = {"SN":"socialNetwork", "MM": "mediaMicroservices", "HR":"hotelReservation","TT":"trainTicket"}
-    config_template_file = "/home/ubuntu/uservices/uservices-perf-analysis/nginx_config/%s_nginx_frontend.template"%app_folder_dict[app];
-    remote_destination_folder ="/home/ubuntu/uservices/DeathStarBench/%s/nginx-web-server/conf/"%app_folder_dict[app];
+    config_template_file = "./nginx_config/%s_nginx_frontend.template"%app_folder_dict[app];
+    remote_destination_folder ="./%s/nginx-web-server/conf/"%app_folder_dict[app];
     subprocess.run("scp -i ~/compass.key %s ubuntu@%s:%s/nginx.temp"%(config_template_file, frontend_host, remote_destination_folder ),shell=True)
      
-    config_template_file = "/home/ubuntu/uservices/uservices-perf-analysis/nginx_config/%s_nginx_media.template"%app_folder_dict[app];
-    remote_destination_folder ="/home/ubuntu/uservices/DeathStarBench/%s/media-frontend/conf/"%app_folder_dict[app];
+    config_template_file = "./nginx_config/%s_nginx_media.template"%app_folder_dict[app];
+    remote_destination_folder ="./%s/media-frontend/conf/"%app_folder_dict[app];
     subprocess.run("scp -i ~/compass.key %s ubuntu@%s:%s/nginx.temp"%(config_template_file, frontend_host, remote_destination_folder ),shell=True)
     
-    config_template_file = "/home/ubuntu/uservices/uservices-perf-analysis/nginx_config/%s_nginx_frontend.template"%app_folder_dict[app];
-    remote_destination_folder ="/home/ubuntu/uservices/DeathStarBench/%s/ts-ui-dashboard/"%app_folder_dict[app];
+    config_template_file = "./nginx_config/%s_nginx_frontend.template"%app_folder_dict[app];
+    remote_destination_folder ="./%s/ts-ui-dashboard/"%app_folder_dict[app];
     subprocess.run("scp -i ~/compass.key %s ubuntu@%s:%s/nginx.temp"%(config_template_file, frontend_host, remote_destination_folder ),shell=True)
 
 def create_frontend_configfile(frontend_name,frontend_host,config_options,version,app, output_folder):
@@ -81,13 +81,13 @@ def create_frontend_configfile(frontend_name,frontend_host,config_options,versio
         return
 
     app_folder_dict = {"SN":"socialNetwork", "MM": "mediaMicroservices","HR":"hotelReservation","TT":"trainTicket"}
-    config_template_file = "/home/ubuntu/uservices/uservices-perf-analysis/nginx_config/%s_nginx_frontend.template"%app_folder_dict[app];
-    remote_destination_folder ="/home/ubuntu/uservices/DeathStarBench/%s/nginx-web-server/conf/"%app_folder_dict[app];
+    config_template_file = "./nginx_config/%s_nginx_frontend.template"%app_folder_dict[app];
+    remote_destination_folder ="./%s/nginx-web-server/conf/"%app_folder_dict[app];
 
     json_config_events_block_index = 1 # The media-frontend and the nginx frontend have different configs. The events block is the first element in media-frontend and the second element in the nginx frontend.
     if frontend_name == "media-frontend":
-        config_template_file = "/home/ubuntu/uservices/uservices-perf-analysis/nginx_config/%s_nginx_media.template"%app_folder_dict[app];
-        remote_destination_folder ="/home/ubuntu/uservices/DeathStarBench/%s/media-frontend/conf/"%app_folder_dict[app];
+        config_template_file = "./nginx_config/%s_nginx_media.template"%app_folder_dict[app];
+        remote_destination_folder ="./%s/media-frontend/conf/"%app_folder_dict[app];
         json_config_events_block_index = 0
 
     config_directory = os.path.dirname(config_template_file)
@@ -149,7 +149,7 @@ def create_services_config(config, services_host, app, local_destination_folder)
     Writes config related to services i.e. worker threads and io_threads to a file.
     """
     app_folder_dict = {"SN":"socialNetwork", "MM":"mediaMicroservices", "HR":"hotelReservation","TT":"trainTicket"}
-    remote_destination_folder = "/home/ubuntu/uservices/DeathStarBench/%s/config"%app_folder_dict[app]
+    remote_destination_folder = "./%s/config"%app_folder_dict[app]
     config_file_path = local_destination_folder + "/parameters-config.txt"
     with open(config_file_path, "w") as config_file_f:
         config_file_f.write("\n".join(config))

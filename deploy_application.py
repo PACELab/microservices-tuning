@@ -5,7 +5,7 @@ import time
 
 def runComposeInHosts(allHosts,hostToConfig):
     runCmdTemplate = "ssh -i ~/compass.key ubuntu@${cluster_hosts[0]} \"cd $social_network_home;${docker_compose_template/filename/$host_1_file}\""
-    destFilename = "/home/ubuntu/touse.yaml"
+    destFilename = "./touse.yaml"
 
     for curHost in allHosts:
         scpPrefix = "scp -i ~/compass.key "+str(hostToConfig[curHost])
@@ -56,7 +56,7 @@ def beginDocker(allHosts,client,consulHost, consul_port):
 def create_loadgenerator(client_host, overlay_network):
     #TODO: remove hardcoding
     loadgenerator_container = "loadgenerator"
-    os.system("ssh -i ~/compass.key ubuntu@%s sudo docker run --name %s -v /home/ubuntu/uservices/uservices-perf-analysis/:/home/ubuntu/uservices/uservices-perf-analysis/ -v /home/ubuntu/uservices/DeathStarBench/:/home/ubuntu/uservices/DeathStarBench/ -td gaganso/loadgenerator:v1"%(client_host,loadgenerator_container))
+    os.system("ssh -i ~/compass.key ubuntu@%s sudo docker run --name %s -v ./:./ -v ./:./ -td gaganso/loadgenerator:v1"%(client_host,loadgenerator_container))
     os.system("ssh -i ~/compass.key ubuntu@%s sudo docker network connect %s %s"%(client_host,overlay_network,loadgenerator_container))
 
 def beginConsul(consulHost, consul_name, consul_port):
@@ -100,7 +100,7 @@ def getHostname():
 
 def create_volumes(backend, app):
     app_dict = {"SN" : "socialNetwork","MM" : "mediaMicroservices", "HR":"hotelReservation","TT":"trainTicket"}
-    volume_parent_directory = "/home/ubuntu/uservices/DeathStarBench/%s"%app_dict[app]
+    volume_parent_directory = "./%s"%app_dict[app]
     volume_source = volume_parent_directory + "/volumes"
     volume_destination = volume_parent_directory + "/tmp"
     ssh_command = "ssh ubuntu@%s "%backend
