@@ -119,7 +119,7 @@ class BayesianOptimization:
         # result contains the best parameters, min value, as well as all the
         # parameters and function value at those points
 
-        time_file = "/home/ubuntu/uservices/uservices-perf-analysis/results/%s/time.txt" % (
+        time_file = "./results/%s/time.txt" % (
             self.current_sequence_folder)
         with open(time_file, "w") as f:
             f.write(str(self.total_time/self.args.model_iterations))

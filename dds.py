@@ -206,7 +206,7 @@ def get_init_points_default(app, exp_type):
 
 if __name__ == "__main__":
     """
-    test_object = DDS('/home/ubuntu/uservices/uservices-perf-analysis/configs/all/social_networking_parameters.csv')
+    test_object = DDS('./configs/all/social_networking_parameters.csv')
     while( not test_object.stop_config_generation("/dev/null")):
         configs = test_object.next_config()
         f_new = test_f(configs)

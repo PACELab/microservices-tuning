@@ -136,7 +136,7 @@ def collect_stats(results_folder,version,app_config_iteration,app,rps_list,itera
             #rps_stats_df["normal_std"] =  rps_stats_df["std"].astype(float)/ rps_stats_df["avg"].astype(float)
             rps_stats_df.to_csv(summary_file)
         except:
-            os.system("cp /home/ubuntu/uservices/uservices-perf-analysis/results/failure_merged_stats.csv %s"%summary_file)
+            os.system("cp ./results/failure_merged_stats.csv %s"%summary_file)
 
 def individual_requests_percentiles_across_iterations(experiment_folder,request_type,iterations):
     percentiles_dict = {}
@@ -161,7 +161,7 @@ def collect_stats_individual_requests(results_folder,version,subversion,app,rps_
     request_dict = {"SN":["compose","user","home"], "MM" : ["review_compose","review_read","plot_read"]}
     request_types = request_dict[app]
     df_columns = ["request_type","version","iter","max", "total_count","avg","std","P_50","P_75","P_90","P_99","P_99.9","P_95"]
-    results_folder = "/home/ubuntu/uservices/uservices-perf-analysis/results/"
+    results_folder = "./results/"
     wrk2_log_file_template = results_folder+"%s/v_%s_%s_rps%s/i%d/%s.log" 
     #remove units and convert all time data to millisecond
     #create a 2-D array of values and convert to dataframe

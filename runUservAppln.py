@@ -5,7 +5,7 @@ import socket
 
 numArgs = 6 
 
-folderPrefix="/home/ubuntu/uservices/uservices-perf-analysis"
+folderPrefix="."
 client_container_name = "loadgenerator"
 def launchMediaMicroservicesCmd(numThreads,numConns,runTime,rps,feNode,outputFolder):
     # Prepare wrk command
@@ -165,11 +165,11 @@ def launchSocialNetworkCmd(numThreads,numConns,runTime,rps,feNode,outputFolder,i
     runWrkScriptCmd = ["bash","./"+str(wrkScriptFilename)]
 
     if is_client_container:
-        script_destination = "/home/ubuntu/"
+        script_destination = "./"
         script_path = script_destination+"/tempExptRun.sh"
         os.system("docker cp %s %s:%s"%(wrkScriptFilename,client_container_name,script_path))
         os.system("docker exec %s chmod +x %s"%(client_container_name,script_path))
-        runWrkScriptCmd = "docker exec -d %s /home/ubuntu/tempExptRun.sh"%(client_container_name)
+        runWrkScriptCmd = "docker exec -d %s ./tempExptRun.sh"%(client_container_name)
     print ("\t wrkCmd: %s "%(wrkCmd))
     try:
         if is_client_container:
@@ -192,14 +192,14 @@ def launchTrainTicketCmd(numThreads,numConns,runTime,rps,feNode,outputFolder):
      # print ("\t extractedHostName: %s toUseHostname: %s "%(hostname,toUseHostname)); 
      hostname = feHostName
      commonUrl = "http://"+str(feHostName)+":8080"
-     os.system("/home/ubuntu/uservices/uservices-perf-analysis/wrk2/wrk -t 1 -c 1 -d 2 -R 1 -L -s /home/ubuntu/uservices/uservices-perf-analysis/wrk2/scripts/train-ticket/userauth.lua http://%s:8080"%feNode)
-     with open("/home/ubuntu/uservices/uservices-perf-analysis/user_token.txt") as f:
+     os.system("./wrk2/wrk -t 1 -c 1 -d 2 -R 1 -L -s ./wrk2/scripts/train-ticket/userauth.lua http://%s:8080"%feNode)
+     with open("./user_token.txt") as f:
          token = f.read()
          print(token)
  
      wrkPrefix = str(wrkFolder)+"/wrk -D exp -t "+str(numThreads)+" -c "+str(numConns)+" -d "+str(runTime)  + " -P " + str(outputFolder) +"/train_ticket_latencies.txt"
      wrkCmd = str(wrkPrefix)+" -L -s "+str(wrkFolder)+"/scripts/train-ticket/mixedload.lua "+str(commonUrl)+" -R "+str(rps)+" > "+str(outputFolder)+"/latency.log 2>&1 &"
-     wrkCmd = "/home/ubuntu/uservices/uservices-perf-analysis/wrk2/wrk -t 2 -c 4 -d " + str(runTime) + " -P " + str(outputFolder) +"/train_ticket_latencies.txt" + " -R " + str(rps) + " -L -s /home/ubuntu/uservices/uservices-perf-analysis/wrk2/scripts/train-ticket/mixedload.lua http://%s:8080 %s 6000 > %s/latency.log 2>&1 &"%(feNode, token, str(outputFolder))
+     wrkCmd = "./wrk2/wrk -t 2 -c 4 -d " + str(runTime) + " -P " + str(outputFolder) +"/train_ticket_latencies.txt" + " -R " + str(rps) + " -L -s ./wrk2/scripts/train-ticket/mixedload.lua http://%s:8080 %s 6000 > %s/latency.log 2>&1 &"%(feNode, token, str(outputFolder))
      print(wrkCmd)
  
      wrkScriptFilename = "./tempExptRun.sh"

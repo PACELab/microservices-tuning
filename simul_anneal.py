@@ -75,7 +75,7 @@ class SimulatedAnnealing:
         approach = self.argv[7]
         parameter_csv_file = app_file_suffix[app] + "_parameters.csv"
         configuration_csv_file = app_file_suffix[app] + "_config.csv"
-        result_folder = "/home/ubuntu/uservices/uservices-perf-analysis/results"
+        result_folder = "./results"
 
         app_config_dir = config_dir + "/" + version
         parameter_csv_path = app_config_dir + "/" + parameter_csv_file  # list of parameters, their ranges, etc.
