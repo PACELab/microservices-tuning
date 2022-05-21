@@ -41,9 +41,9 @@ class AccumulateStats():
         self.dummyProcNum = 7234 
         
         #self.funcContainerSuffix = str(self.versionName)+"_out.log"
-        self.sshCommandPrefix = ['ssh', '-i','./compass.key']
+        self.sshCommandPrefix = ['ssh', '-i','./<identity key file>']
         #self.sshCommandPrefix = ['ssh']
-        self.scpCommandPrefix = ['scp', '-i','./compass.key']
+        self.scpCommandPrefix = ['scp', '-i','./<identity key file>']
         #self.scpCommandPrefix = ['scp']
         self.dockerLogFilename = str(self.outputDir)+'/dockstats_'+str(self.versionName)+'.log'
         self.mpstatLogFilename = str(self.outputDir)+'/mpstats_'+str(self.versionName)+'_%s.log'

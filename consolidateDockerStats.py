@@ -36,8 +36,8 @@ class AccumulateStats():
         self.dockStatsFilePrefix = exptConfigs['filePrefix']
 
         
-        self.sshCommandPrefix = ['ssh', '-i','./compass.key']
-        self.scp_command_prefix = ['scp', '-i','./compass.key']
+        self.sshCommandPrefix = ['ssh', '-i','./<identity key file>']
+        self.scp_command_prefix = ['scp', '-i','./<identity key file>']
         self.mpstatLogFilename = str(self.outputDir)+'/mpstats_'+str(self.versionName)+'.log'
 
 

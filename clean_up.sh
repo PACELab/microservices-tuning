@@ -28,13 +28,13 @@ common_commands="sudo docker stop \$(sudo docker ps -a -q) ; sudo docker rm \$(s
 while IFS=, read -r host yaml
 do
         printf "\n\n\n\tCleaning up : $host\n\n"
-	ssh -ni ~/compass.key ubuntu@$host "$common_commands" # -n tells ssh to read from /dev/null. Otherwise it will read the stdin(< file) completely
+	ssh -ni ~/<identity key file> ubuntu@$host "$common_commands" # -n tells ssh to read from /dev/null. Otherwise it will read the stdin(< file) completely
 done < $1
 
 # The second argument is the client VM where the load generator is running.
 #if [ $# -gt 3 ]; then
 #	printf "\n\n\n\tCleaning up : $3\n\n"
-#	ssh -i ~/compass.key ubuntu@$3 "$common_commands"
+#	ssh -i ~/<identity key file> ubuntu@$3 "$common_commands"
 #fi
 
 consul_name="consul_"$cluster_number

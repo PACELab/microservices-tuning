@@ -4,11 +4,11 @@ import sys,subprocess,copy
 import time
 
 def runComposeInHosts(allHosts,hostToConfig):
-    runCmdTemplate = "ssh -i ~/compass.key ubuntu@${cluster_hosts[0]} \"cd $social_network_home;${docker_compose_template/filename/$host_1_file}\""
+    runCmdTemplate = "ssh -i ~/<identity key file> ubuntu@${cluster_hosts[0]} \"cd $social_network_home;${docker_compose_template/filename/$host_1_file}\""
     destFilename = "./touse.yaml"
 
     for curHost in allHosts:
-        scpPrefix = "scp -i ~/compass.key "+str(hostToConfig[curHost])
+        scpPrefix = "scp -i ~/<identity key file> "+str(hostToConfig[curHost])
         scpSuffix = "ubuntu@"+str(curHost)+":"+str(destFilename)
         scpCmd = str(scpPrefix)+" "+str(scpSuffix)
         print ("\n\t scpCmd: %s "%(scpCmd))
@@ -19,7 +19,7 @@ def runComposeInHosts(allHosts,hostToConfig):
             print ("\t Exception: %s happened while copying file: %s to host: %s "%(err,hostToConfig[curHost],curHost))
             raise err
 
-        runCmdPrefix = "ssh -i ~/compass.key ubuntu@"+str(curHost)
+        runCmdPrefix = "ssh -i ~/<identity key file> ubuntu@"+str(curHost)
         runCmdSuffix=" sudo docker-compose -f "+str(destFilename)+" up -d"
         runCmd = str(runCmdPrefix)+" "+str(runCmdSuffix)
         print ("\t runCmd: %s "%(runCmd))
@@ -39,7 +39,7 @@ def beginDocker(allHosts,client,consulHost, consul_port):
     hostsToStart = allHosts
 
     for curHost in hostsToStart:
-        loginPrefix = "ssh -i ~/compass.key ubuntu@"+str(curHost)
+        loginPrefix = "ssh -i ~/<identity key file> ubuntu@"+str(curHost)
         if curHost in  []:
             #TODO: Connect the ethernet cable to np2s0f0 the next time you go to the lab and remove this
             beginDockerCmd = str(loginPrefix)+" "+str(beginDockerSuffix.replace("enp2s0f0","enp2s0f1"))
@@ -56,8 +56,8 @@ def beginDocker(allHosts,client,consulHost, consul_port):
 def create_loadgenerator(client_host, overlay_network):
     #TODO: remove hardcoding
     loadgenerator_container = "loadgenerator"
-    os.system("ssh -i ~/compass.key ubuntu@%s sudo docker run --name %s -v ./:./ -v ./:./ -td gaganso/loadgenerator:v1"%(client_host,loadgenerator_container))
-    os.system("ssh -i ~/compass.key ubuntu@%s sudo docker network connect %s %s"%(client_host,overlay_network,loadgenerator_container))
+    os.system("ssh -i ~/<identity key file> ubuntu@%s sudo docker run --name %s -v ./:./ -v ./:./ -td gaganso/loadgenerator:v1"%(client_host,loadgenerator_container))
+    os.system("ssh -i ~/<identity key file> ubuntu@%s sudo docker network connect %s %s"%(client_host,overlay_network,loadgenerator_container))
 
 def beginConsul(consulHost, consul_name, consul_port):
     beginDockerCmd = "sudo service docker start"
@@ -82,7 +82,7 @@ def consul_attributes(cluster_number):
     return consul_name, host_port
 
 def beginOverlayNW(hostToUse,overlay_name):
-    loginPrefix = "ssh -i ~/compass.key ubuntu@"+str(hostToUse)
+    loginPrefix = "ssh -i ~/<identity key file> ubuntu@"+str(hostToUse)
 
     # overlay_name is of the form social-network-overlay-2. So, get the cluster number and use it in the IP to get different subnets
     overlayCmd=str(loginPrefix)+" sudo docker network create -d overlay --subnet=192.168.%s.0/24 %s"%(overlay_name.split('-')[-1], overlay_name)
@@ -166,10 +166,10 @@ if __name__ == "__main__":
     
     # for host in ${cluster_hosts[*]}
     # do
-    #     ssh -i ~/compass.key ubuntu@$host "$common_cmds"
+    #     ssh -i ~/<identity key file> ubuntu@$host "$common_cmds"
     # done
     
-    # ssh -i ~/compass.key ubuntu@$host "$overlay_cmd"
+    # ssh -i ~/<identity key file> ubuntu@$host "$overlay_cmd"
     
     # echo "${docker_compose_template/filename/$host_1_file}"
     

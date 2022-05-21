@@ -11,10 +11,7 @@ import bayesopt
 import hyperopt_algos
 import pso
 import dds
-import pbr
-import ucb
 import genetic_opt
-import cb
 import config_to_docker_compose
 
 
@@ -56,7 +53,7 @@ def argument_parser():
     parser.add_argument(
         "approach", help="The optimization algorithm to be used")
     parser.add_argument(
-        "--client", help="The IP of the client machine", default="130.245.127.132")
+        "--client", help="The IP of the client machine", default="X.X.X.X")
     parser.add_argument("--rps_list", "-r", "-R",
                         help="The rps list at which experiments are to be run", nargs="+", type=int)
     parser.add_argument("--experiment_iterations", "-ei",
